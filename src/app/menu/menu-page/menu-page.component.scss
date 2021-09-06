@@ -1,0 +1,521 @@
+@import "../../main-page/main-page.component.scss";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.menu-page-container {
+    .cart-con {
+        padding: 32px 15px;
+        position: fixed;
+        // position: relative;
+        // right: 0;
+        top: 0;
+        bottom: 0;
+        height: 100vh;
+        // background-color: tomato;
+        .header {
+            display: block;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            font-family: $open-font;
+            margin: 0 0 30px 0;
+        }
+        .asap-p {
+            font-size: 16px;
+            color: #181218;
+            font-weight: 700;
+            font-family: $open-font;
+            margin: 20px 0;
+            .del-toggle {
+                font-size: 16px;
+                color: #181218;
+                font-weight: 700;
+                font-family: $open-font;
+            }
+            .update {
+                text-decoration: underline;
+                margin: 0 0 0 5px;
+                cursor: pointer;
+            }
+        }
+        .add-adress {
+            margin: 20px 0;
+            p {
+                font-size: 16px;
+                font-weight: 700;
+                color: #181218;
+                font-family: $open-font;
+                margin: 15px 0 0 0;
+            }
+            span {
+                text-decoration: underline;
+            }
+        }
+        background-color: #ffffff;
+
+        .order-place {
+            // color: #d3d3d3;
+            padding: 15px;
+            color: #697280;
+            text-align: center;
+            display: flex;
+            height: auto;
+            overflow: auto;
+            min-height: 150px;
+            max-height: 300px;
+            flex-direction: column;
+
+            position: relative;
+            padding: 14px 0 80px 0;
+
+            // justify-content: center;
+            // background-color: tomato;
+            i {
+                font-size: 30px;
+                opacity: 0.6;
+            }
+            p {
+                font-size: 16px;
+                font-family: $open-font;
+                font-weight: 700;
+                // margin: 24px;
+            }
+            // #697280
+        }
+
+        .checkout-btn {
+            background-color: #ffffff;
+            // background-color: teal;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            left: 0;
+            right: 0;
+            position: absolute;
+            bottom: 15px;
+           
+            &::after {
+                content: " ";
+                width: 100%;
+                height: 1px;
+                position: absolute;
+                margin: -10px 0;
+                // margin: 20px;
+                background-color: #697280;
+                opacity: 0.5;
+            }
+
+            button {
+                margin: auto;
+                background-color: #c54531;
+                text-align: center;
+                width: 90%;
+                padding: 15px;
+                border-radius: 30px;
+                border-style: none;
+                color: #ffffff;
+                font-size: 22px;
+                font-family: $open-font;
+             //    font-weight: 700;
+             &:active{
+                 transform: scale(0.98);
+             }
+            }
+        }
+        // background-color: brown;
+    }
+}
+
+.cartBtn-con{
+    margin: auto;
+    width: 95%;
+    // background-color: teal;
+  border: #c54531 1px solid;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+   
+    span{
+        text-align: center;
+        border-radius: 30px;
+
+        padding: 6px 15px;
+        border: none;
+        width: 50%;
+        font-family: $open-font;
+        font-weight: 500;
+        font-size: 14px;
+        // background-color: #ffffff;
+    }
+}
+.active-btn{
+    background-color: #c54531;
+    border-radius: 20px;
+    color: #ffffff;
+    
+}
+
+.close-info{
+    position: relative; 
+    z-index: 1000;
+    // background-color: #efefef;
+    margin: 40px 0px 0px 0px;
+    padding: 28px 0px;
+    text-align: center;
+    p{
+        color: #ffffff;
+        font-family: $open-font;
+        font-size: 22px;
+        margin: 20px 0;
+    }
+    button{
+        background-color: #c54531;
+                text-align: center;
+                border-radius: 40px;
+                border: none;
+                cursor: pointer;
+               padding: 15px 30px;
+               color: #ffffff;
+               font-size: 22px;
+               font-family: $open-font;
+            //    font-weight: 700;
+            &:active{
+                transform: scale(0.98);
+            }
+    }
+}
+.home {
+    width: 100%;
+    min-height: 400px;
+    background-image: url("../../../assets/product-meat-lover-s-pizza-4157207-zoom.jpeg");
+    background-size: cover;
+    height: auto;
+
+    position: relative;
+
+    .login-con {
+        position: relative;
+        z-index: 1000;
+      
+        display: flex;
+        justify-content: space-between;
+        // background-color: #c54531;
+        padding: 50px 0 0 0;
+        margin: 0px 80px 40px 80px;
+        // margin: 60px 40px;
+        .slice-logo {
+            fill: rgb(255, 255, 255);
+            // color: #181218;
+            height: 33px;
+            width: 44px;
+        }
+        .login {
+            button {
+                font-size: 12px;
+                color: rgb(24, 18, 24);
+                font-family: "Open Sans", sans-serif;
+                font-weight: 700;
+                line-height: 1.29;
+                border-radius: 20px;
+                min-width: 70px;
+                padding: 0px 8px 0px 5px;
+                height: 40px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                -webkit-box-align: center;
+                justify-content: center;
+                -webkit-box-pack: center;
+                background: rgb(255, 255, 255);
+                margin-left: 16px;
+                border: none;
+                
+                font-family: $open-font;
+             //    font-weight: 700;
+             &:active{
+                 transform: scale(0.98);
+             }
+            }
+        }
+    }
+
+    .info-con {
+        position: relative;
+        margin: 50px 0px 40px 80px;
+        padding: 28px 28px 16px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        color: #687282;
+        z-index: 1000;
+
+        .info-con-header {
+            font-family: $open-font;
+            color: #181218;
+            font-size: 22px;
+            font-weight: 700;
+            display: block;
+        }
+        img {
+            width: 70px;
+            position: absolute;
+            right: 10px;
+            top: -11px;
+        }
+
+        .free-pizza-icon {
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            svg {
+                margin-right: 10px;
+            }
+            p {
+                color: #4c4c4c;
+                font-size: 14px;
+                font-family: $open-font;
+                font-weight: 700;
+            }
+            span {
+                color: #687282;
+                font-size: 12px;
+                font-family: $open-font;
+            }
+            i {
+                position: absolute;
+                right: 0;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                background-color: #697280;
+                top: 0;
+                opacity: 0.2;
+            }
+        }
+    }
+}
+
+.home-layer{
+    background-color: #000;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+}
+.under-line {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/*************************************/
+.item {
+    padding: 18px 21px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin: 15px 15px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+        font-size: 14px;
+        font-family: $open-font;
+        color: #687282;
+    }
+    span {
+        font-size: 14px;
+        font-family: $open-font;
+        font-weight: 700;
+        color: #181218;
+    }
+    img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+.categories-con {
+    background-color: #efefef;
+    padding: 48px;
+
+    .dealsSec {
+        display: flex;
+        flex-wrap: wrap;
+       
+       
+        
+        h3 {
+            font-family: $open-font;
+            font-size: 22px;
+            color: #181218;
+        }
+       
+        .deals-btn {
+            position: relative;
+            cursor: pointer;
+            display: block;
+            padding: 12px;
+            background-color: #ffffff;
+            border-radius: 8px;
+
+            margin: 30px 30px 0 0;
+            .fas {
+                position: absolute;
+                line-height: 1.5rem;
+                right: 10px;
+            }
+            .dollar-sign {
+                background-color: rgb(21, 136, 79);
+                color: #ffffff;
+                padding: 3px 8px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+            p {
+                font-weight: 700;
+            }
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            p {
+                font-size: 14px;
+                font-family: $open-font;
+                color: #687282;
+            }
+            span {
+                font-size: 14px;
+                font-family: $open-font;
+                font-weight: 700;
+                color: #181218;
+            }
+        }
+    }
+    .pizza,
+    .combos {
+        margin: 30px 0 0 0;
+        h3 {
+            font-family: $open-font;
+            font-size: 22px;
+            color: #181218;
+        }
+    }
+}
+
+.myModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    // filter: blur(4px);
+    // -webkit-filter: blur(4px);
+    display: none;
+
+    .modalBox {
+        background-color: #efefef;
+        border-radius: 8px;
+        position: relative;
+        width: 500px;
+        min-height: 94vh;
+        top: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+      
+        padding: 20px;
+
+        #closeModal {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            cursor: pointer;
+        }
+        img{
+            width: 90%;
+            text-align: center;
+        }
+        #itemPrice{
+
+        }
+
+        #itemTitle{
+            text-align: center;
+            font-size: 16px;
+            font-family: $open-font;
+            color: #181218;
+            font-weight: 700;
+            text-decoration: underline;
+            margin-bottom: 20px;
+        }
+        #plusIcon , #minusIcon{
+            color: #c54531;
+            font-size: 20px;
+           margin: 0 20px;
+            cursor: pointer;
+            &:active{
+                transform: scale(0.98);
+            }
+        
+
+        }
+        #pizzaCounter{
+            background-color: #c54531;
+            padding: 5px 10px;
+            border-radius: 50%;
+            color: #ffffff;
+            &::selection{
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+
+
+        }    
+        .quantity{
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: rgb(213 213 213 / 50%) 0px 4px 4px 0px;
+
+        }
+    }
+}
+
+@media all and (max-width: 991px) and (min-width: 50px) {
+    .menu-page-container {
+        .cart-con {
+            right: 0;
+            left: 0;
+            display: none;
+        }
+    }
+    .home {
+        position: relative;
+        .info-con {
+            position: absolute;
+            margin: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            border-radius: 0;
+        }
+    }
+    .close-info{
+        display: none;
+    }
+}
