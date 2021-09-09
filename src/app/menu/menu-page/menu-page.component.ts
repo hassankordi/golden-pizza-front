@@ -68,7 +68,9 @@ pizza = [
     id:"1",
     title: "Cheese Pizza",
     over_view:`Classic cheese or create your own pizza.`,
-    price:9.58,
+    smallPrice:9.58,
+    mediumPrice:11.98,
+    largePrice:13.18,
     img_src:"../../../assets/pizza-icons/cheese pizza.jpg"
 
   },
@@ -77,7 +79,9 @@ pizza = [
     id:"2",
     title: "Pita Pizza with Two Toppings",
     over_view:``,
-    price:5.94,
+    smallPrice:5.94,
+    mediumPrice:8.68,
+    largePrice:11.78,
     img_src:false
 
   }
@@ -192,16 +196,40 @@ pizza = [
   
   closeModal(){
     const modal = (document.getElementById("myModal") as HTMLElement).style.display="none";
+    this.pizzaCounter = 1;
+    // this.smallSizeButtonChecked= true;
+    // console.log(this.smallSizeButtonChecked);
+    
+    // (document.getElementById("smallSizeButton") as HTMLElement).addEventListener('',()=>{});
+    // (document.getElementById("smallSizeButton") as HTMLElement).setAttribute('checked','true');
+    // (document.getElementById("largeSizeButton") as HTMLElement).removeAttribute('checked');
+
+    // (document.getElementById("mediumSizeButton") as HTMLElement).removeAttribute('checked');
+
   }
   modalImgSrc=""
   modalWithImg = true
   openModal(clickedPizza:any){
+    // this.smallSizeButtonChecked =true;
+    // console.log(this.smallSizeButtonChecked);
+//   let small=  (document.getElementById("smallSizeButton") as HTMLElement).setAttribute('checked','true');
+//    let medium =  (document.getElementById("mediumSizeButton") as HTMLElement).removeAttribute('checked');
+//    let large = (document.getElementById("largeSizeButton") as HTMLElement).removeAttribute('checked');
+
+// console.log((document.getElementById("smallSizeButton") as HTMLElement).getAttribute('checked'));
+// console.log((document.getElementById("mediumSizeButton") as HTMLElement).getAttribute('checked'));
+// console.log((document.getElementById("largeSizeButton") as HTMLElement).getAttribute('checked'));
+
+    alert(clickedPizza.id)
+    this.pizzaPrice = clickedPizza.smallPrice;
+    this.smallSizePrice = clickedPizza.smallPrice;
+    this.largeSizePrice = clickedPizza.largePrice;
+    this.mediumSizePrice = clickedPizza.mediumPrice;
 
 
     const modal = (document.getElementById("myModal") as HTMLElement).style.display="block";
-    const price = (document.getElementById("itemPrice") as HTMLElement).innerHTML= "$"+clickedPizza.price;
+    const price = (document.getElementById("itemPrice") as HTMLElement).innerHTML= "$"+this.pizzaPrice;
     const title = (document.getElementById("itemTitle") as HTMLElement).innerHTML=clickedPizza.title;
-
 
     
 
@@ -215,7 +243,7 @@ pizza = [
 
     }
    
-     console.log(clickedPizza.price)
+     console.log(clickedPizza.smallPrice)
 
   }
   
@@ -223,10 +251,24 @@ pizza = [
   /***modal  ==> increase & descrease ***/
   pizzaCounter:number=1;
   pizzaPrice:any;
+myTotal:any;
 
+smallSizePrice:any;
+mediumSizePrice:any;
+largeSizePrice:any;
 
+// smallSizeButtonChecked:boolean =true;
+
+/*********increase && decrease */
   increasePizza(){
 this.pizzaCounter++;
+console.log(this.pizzaCounter);
+console.log(this.pizzaPrice);
+this.myTotal = this.pizzaPrice*this.pizzaCounter
+console.log(this.myTotal);
+
+ (document.getElementById("itemPrice") as HTMLElement).innerHTML= "$"+this.myTotal.toFixed('2');
+
 
   }
   decreasePizza(){
@@ -236,10 +278,40 @@ if(this.pizzaCounter===1){
 else{
   this.pizzaCounter--;
 
+    
+  console.log(this.pizzaCounter);
+console.log(this.pizzaPrice);
+this.myTotal = this.pizzaPrice*this.pizzaCounter
+console.log(this.myTotal);
+(document.getElementById("itemPrice") as HTMLElement).innerHTML= "$"+this.myTotal.toFixed('2');
+
+
 }
 
 
   }
+
+orederInSmallSize(){
+this.pizzaPrice = this.smallSizePrice;
+this.myTotal = this.pizzaPrice*this.pizzaCounter;
+ (document.getElementById("itemPrice") as HTMLElement).innerHTML= "$"+this.myTotal.toFixed('2');
+}
+orederInLargeSize(){
+  this.pizzaPrice = this.largeSizePrice
+  this.myTotal = this.pizzaPrice*this.pizzaCounter;
+ (document.getElementById("itemPrice") as HTMLElement).innerHTML= "$"+this.myTotal.toFixed('2');
+
+}
+orederInMediumSize(){
+  this.pizzaPrice = this.mediumSizePrice;
+  this.myTotal = this.pizzaPrice*this.pizzaCounter;
+ (document.getElementById("itemPrice") as HTMLElement).innerHTML= "$"+this.myTotal.toFixed('2');
+
+
+}
+
+
+
   constructor() {
 
    }

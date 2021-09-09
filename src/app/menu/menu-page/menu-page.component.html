@@ -316,7 +316,7 @@
                             <div>
                                 <span>{{x.title}}</span>
                                 <p>{{x.over_view}}</p>
-                                <p>${{x.price}}</p>
+                                <p>${{x.smallPrice}}</p>
 
                             </div>
                             <img [class.d-none]="!x.img_src" [src]='x.img_src' alt="">
@@ -551,6 +551,16 @@
 
         
             <p id="itemPrice"></p>
+        </div>
+
+        <div class="choose-size">
+            <ul>
+                <!-- [checked]='smallSizeButtonChecked' -->
+                <li><input id="smallSizeButton" (click)='orederInSmallSize()'  type="radio" name="size" value="small"> small <span>small price</span></li>
+                <li> <input id="mediumSizeButton" (click)='orederInMediumSize()' type="radio"name="size" value="medium">Medium <span>Medium price</span></li>
+                <li> <input id="largeSizeButton" (click)='orederInLargeSize()' type="radio"name="size" value="large">large <span>large price</span></li>
+            </ul>
+
         </div>
 
     </div>
