@@ -15,7 +15,7 @@
                         </svg>
                     </div> -->
                     <div class="login ml-auto">
-                        <button>login </button>
+                        <button style="background-color: aqua;" routerLink='/login'>login</button>
                     </div>
 
 
@@ -233,7 +233,8 @@
                     </div>
                     <div class="row" [class.d-none]='!dealsIsOpen'>
 
-                        <div (click)="openModal($event)" *ngFor="let x of dealsSec" class="col-lg-6 my-3">
+                        <div  *ngFor="let x of dealsSec" class="col-lg-6 my-3">
+                            <!-- (click)="openModal($event)" -->
                             <div class="item">
                                 <p>{{x.over_view}}</p>
                                 <span>${{x.price}}</span>
@@ -311,7 +312,9 @@
                 <!-- e3ml edit hena w asta5dem array  -->
                 <div class="pizza row">
                     <h3>Pizza</h3>
-                    <div *ngFor='let x of pizza' class="col-md-6" (click)='openModal(x)'>
+                    <div *ngFor='let x of pizza' (click)='openModal(x)'  class="col-md-6" >
+                        <!-- [routerLink]='["/modal",x.id]' 
+                        (click)='openModal(x)'-->
                         <div class="item">
                             <div>
                                 <span>{{x.title}}</span>
@@ -347,7 +350,7 @@
                 </div>
                 <div class="specialtyPizza row">
                     <h3>Specialty Pizza</h3>
-                    <div *ngFor='let x of specialtyPizza' class="col-md-6 hassan">
+                    <div *ngFor='let x of specialtyPizza' routerLink='modal' class="col-md-6">
                         <div class="item ">
                             <div>
                                 <span>{{x.title}}</span>
@@ -446,7 +449,8 @@
 
 
                     <div *ngFor='let x of specials' class="col-md-6">
-                        <div (click)='openModal($event)' class="item">
+                        <div  class="item">
+                            <!-- (click)='openModal($event)' -->
                             <div>
                                 <span>{{x.title}}</span>
                                 <!-- <span>hhhhhhhhhhhhhhhhhhh</span> -->
@@ -516,9 +520,31 @@
                 <span>Add Address</span>
             </div>
             <div class="order-place">
-                <i class="fas fa-shopping-cart"></i>
+                <i *ngIf='!cartArr.length' class="fas fa-shopping-cart"></i>
 
-                <p>Your cart is empty. Select from the menu to start an order!</p>
+                <p *ngIf='!cartArr.length'>Your cart is empty. Select from the menu to start an order!</p>
+<!-----------------------------------------test------->
+                <div class="order-box" *ngFor='let pizza of cartArr'>
+                   <div class="row">
+                       <div class="col-3 ">
+                        <p class="pizza-count-p">{{pizza.pizzaCount}} </p>
+
+                       </div>
+                       <div class="col-9">
+                        <p class="pizza-title-p"> {{pizza.pizzaTitle}} </p>
+                        
+                        <p class="pizza-size-p">{{pizza.size}} </p>
+                        <p class="pizza-total-p"> {{pizza.total}} </p>
+    
+                        <p><span>{{pizza.toppingsArr[0]}}</span><span>{{pizza.toppingsPriceArr[0]}}</span></p>
+                        <p><span>{{pizza.toppingsArr[1]}}</span><span>{{pizza.toppingsPriceArr[1]}}</span></p>
+    
+    
+
+                       </div>
+
+                   </div>
+                </div>
 
             </div>
             <div class="checkout-btn">
@@ -537,7 +563,7 @@
 <div id="myModal" class="myModal">
     <div class="modalBox">
         <i id="closeModal" (click)="closeModal()" class="fas fa-times"></i>
-        <!-- <img [class.d-none]="!modalWithImg" [src]="modalImgSrc" alt=""> -->
+        <!-- <img [class.d-none]="!modalWithImg" [src]="modalImgSrc" alt="">  hint: images is not in high quality -->
         <h2 id="itemTitle"></h2>
         
       
@@ -556,12 +582,29 @@
         <div class="choose-size">
             <ul>
                 <!-- [checked]='smallSizeButtonChecked' -->
-                <li><input id="smallSizeButton" (click)='orederInSmallSize()'  type="radio" name="size" value="small"> small <span>small price</span></li>
-                <li> <input id="mediumSizeButton" (click)='orederInMediumSize()' type="radio"name="size" value="medium">Medium <span>Medium price</span></li>
-                <li> <input id="largeSizeButton" (click)='orederInLargeSize()' type="radio"name="size" value="large">large <span>large price</span></li>
+                <li><input id="smallSizeButton" (click)='orederInSmallSize()'  type="radio" name="size" value="small"> small <span> $ {{smallSizePrice}}</span></li>
+                <li> <input id="mediumSizeButton" (click)='orederInMediumSize()' type="radio"name="size" value="medium">Medium <span>$ {{mediumSizePrice}}</span></li>
+                <li> <input id="largeSizeButton" (click)='orederInLargeSize()' type="radio"name="size" value="large">large <span>$ {{largeSizePrice}}</span></li>
+            </ul>
+
+        </div>
+        <h2>test add toppings</h2>
+
+        <div class="add-toppings">
+            <ul>
+                <li><input id="extra-cheese" (click)='addCheese()'  type="checkbox" name="cheese" value="cheese"> extra-cheese <span>cheese price</span></li>
+                <li><input id="extra-sauce" (click)='addSauce()'  type="checkbox" name="sauce" value="sauce"> extra-sauce <span>sauce price</span></li>
+                <li><input id="extra-onion" (click)='addOnion()'  type="checkbox" name="onions" value="onions"> extra-onions <span>onions price</span></li>
+                <li><input id="extra-tomato" (click)='addTomato()'  type="checkbox" name="tomatos" value="tomatos"> extra-tomatos <span>tomatos price</span></li>
+                
             </ul>
 
         </div>
 
+        <div class="add-to-cart my-5">
+            <button (click)='addToCart()' class="btn btn-warning">add to cart</button>
+
+        </div>
+
     </div>
-</div>
+</div> 
