@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MenuPageComponent } from './menu-page/menu-page.component';
 import { LoginComponent } from './login/login.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { MenuRoutingModule } from './menu-routing.module'; ///////
 
 
@@ -15,7 +17,9 @@ import { MenuRoutingModule } from './menu-routing.module'; ///////
   ],
   imports: [
      CommonModule,
-     MenuRoutingModule
+     MenuRoutingModule ,
+    ReactiveFormsModule
+
   ]
 })
 export class MenuModule { }

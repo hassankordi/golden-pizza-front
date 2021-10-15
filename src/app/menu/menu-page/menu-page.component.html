@@ -15,7 +15,7 @@
                         </svg>
                     </div> -->
                     <div class="login ml-auto">
-                        <button style="background-color: aqua;" routerLink='/login'>login</button>
+                        <button  routerLink='/login'>login</button>
                     </div>
 
 
@@ -234,74 +234,14 @@
                     <div class="row" [class.d-none]='!dealsIsOpen'>
 
                         <div  *ngFor="let x of dealsSec" class="col-lg-6 my-3">
-                            <!-- (click)="openModal($event)" -->
+                          
                             <div class="item">
                                 <p>{{x.over_view}}</p>
                                 <span>${{x.price}}</span>
                             </div>
 
                         </div>
-                        <!----
-                        <div class="col-lg-6 my-3 ">
-                            <div class="item">
-                                <p>Buy Two Small Cheese Pizza Get Third Half Price For Only $28.98</p>
-                                <span>$28.98</span>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-6 my-3">
-                            <div class="item">
-                                <p>Large One Topping Pizza with 10 Wings & Drink For Only $23.98</p>
-                                <span>$23.98</span>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-6 my-3">
-                            <div class="item">
-                                <p>Buy Two Medium Cheese Pizza Get Third Half Price For Only $36</p>
-                                <span>$36</span>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-6 my-3">
-                            <div class="item">
-                                <p>Any 8" Subs with Drink & Fries For Only $8.38 </p>
-                                <span>$8.38</span>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-6 my-3">
-                            <div class="item">
-                                <p>Buy Two Large Cheese Pizza Get Third Half Price For Only $39.86</p>
-                                <span>$39.86</span>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-6 my-3">
-                            <div class="item">
-                                <p>Any 12" Subs with Drink & Fries For Only $10.78</p>
-                                <span>$10.78</span>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-6 my-3">
-                            <div class="item">
-                                <p>10 Wings with Fries For Only $11.98</p>
-                                <span>$11.98</span>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-6 my-3">
-                            <div class="item">
-                                <p>Any Pasta Dish with Garlic Bread & Drink For Only $11.98</p>
-                                <span>$11.98</span>
-                            </div>
-
-                        </div>
-
-                        ---->
-
-
+                       
                     </div>
 
 
@@ -327,36 +267,19 @@
                         </div>
 
                     </div>
-                    <!-----
-
-                    <div class="col-md-6">
-                        <div class="item">
-                            <div>
-                                <span>Pita Pizza with Two Toppings</span>
-                                <p></p>
-                                <p>$5.94</p>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-                ------>
-
+                
 
 
                 </div>
                 <div class="specialtyPizza row">
                     <h3>Specialty Pizza</h3>
-                    <div *ngFor='let x of specialtyPizza' routerLink='modal' class="col-md-6">
+                    <div *ngFor='let x of specialtyPizza' (click)='openModal(x)' class="col-md-6">
                         <div class="item ">
                             <div>
                                 <span>{{x.title}}</span>
 
                                 <p>{{x.over_view}}</p>
-                                <p>${{x.price}}</p>
+                                <p>${{x.smallPrice}}</p>
 
                             </div>
                             <img [class.d-none]="!x.img_src" [src]='x.img_src' alt="">
@@ -519,31 +442,43 @@
                 <p>We can’t tell if the restaurant delivers to your location unless you provide us with an address.</p>
                 <span>Add Address</span>
             </div>
+<!--------------------------------------------order place------------------------------------------------------------------>
+
             <div class="order-place">
                 <i *ngIf='!cartArr.length' class="fas fa-shopping-cart"></i>
 
                 <p *ngIf='!cartArr.length'>Your cart is empty. Select from the menu to start an order!</p>
-<!-----------------------------------------test------->
+<!--------------------------------------------order box------------------------------------------------------------------>
                 <div class="order-box" *ngFor='let pizza of cartArr'>
                    <div class="row">
-                       <div class="col-3 ">
+                       <div class="col-1 ">
                         <p class="pizza-count-p">{{pizza.pizzaCount}} </p>
 
                        </div>
-                       <div class="col-9">
+                       <div class="col-10 sub-box">
                         <p class="pizza-title-p"> {{pizza.pizzaTitle}} </p>
                         
-                        <p class="pizza-size-p">{{pizza.size}} </p>
-                        <p class="pizza-total-p"> {{pizza.total}} </p>
+                        <p class="pizza-size-p"><span>{{pizza.size}} </span><span> ${{pizza.pizzaPrice}}</span> </p>
+        
+                        <p *ngIf='pizza.toppingsArr[0]' class="pizza-size-p"><span>{{pizza.toppingsArr[0]}}</span><span> ${{pizza.toppingsPriceArr[0]}}</span></p>
+                        <p *ngIf='pizza.toppingsArr[1]' class="pizza-size-p"><span>{{pizza.toppingsArr[1]}}</span><span> ${{pizza.toppingsPriceArr[1]}}</span></p>
     
-                        <p><span>{{pizza.toppingsArr[0]}}</span><span>{{pizza.toppingsPriceArr[0]}}</span></p>
-                        <p><span>{{pizza.toppingsArr[1]}}</span><span>{{pizza.toppingsPriceArr[1]}}</span></p>
+                        <p class="pizza-total-p">total $ {{pizza.total}} </p>
     
+                       
     
 
                        </div>
+                       <div class="col-1">
+                        <i (click)="deleteItemFromCart(pizza)" class="far fa-times-circle"></i>
+                       </div>
 
                    </div>
+                </div>
+<!-----------------------------------------policy------->
+
+                <div class="policy">
+
                 </div>
 
             </div>
@@ -567,7 +502,7 @@
         <h2 id="itemTitle"></h2>
         
       
-        
+        <h4 class="modal-headers">Quantity</h4>
         <div class="quantity">
             <div>
                 <i (click)="increasePizza()" id="plusIcon" class="fas fa-plus-circle"></i>
@@ -579,30 +514,33 @@
             <p id="itemPrice"></p>
         </div>
 
+        <h4 class="modal-headers">Choose an option</h4>
         <div class="choose-size">
             <ul>
-                <!-- [checked]='smallSizeButtonChecked' -->
-                <li><input id="smallSizeButton" (click)='orederInSmallSize()'  type="radio" name="size" value="small"> small <span> $ {{smallSizePrice}}</span></li>
-                <li> <input id="mediumSizeButton" (click)='orederInMediumSize()' type="radio"name="size" value="medium">Medium <span>$ {{mediumSizePrice}}</span></li>
-                <li> <input id="largeSizeButton" (click)='orederInLargeSize()' type="radio"name="size" value="large">large <span>$ {{largeSizePrice}}</span></li>
+               
+                <li><span><input id="smallSizeButton" (click)='orederInSmallSize()'  type="radio" name="size" value="small"> small</span> <span class="priceStyle">$ {{smallSizePrice}}</span></li>
+                <li> <span><input id="mediumSizeButton" (click)='orederInMediumSize()' type="radio"name="size" value="medium"> Medium</span> <span class="priceStyle">$ {{mediumSizePrice}}</span></li>
+                <li> <span><input id="largeSizeButton" (click)='orederInLargeSize()' type="radio"name="size" value="large"> large</span> <span class="priceStyle">$ {{largeSizePrice}}</span></li>
             </ul>
 
         </div>
-        <h2>test add toppings</h2>
+        <h4 class="modal-headers">Choose Up to Two Toppings</h4>
 
         <div class="add-toppings">
             <ul>
-                <li><input id="extra-cheese" (click)='addCheese()'  type="checkbox" name="cheese" value="cheese"> extra-cheese <span>cheese price</span></li>
-                <li><input id="extra-sauce" (click)='addSauce()'  type="checkbox" name="sauce" value="sauce"> extra-sauce <span>sauce price</span></li>
-                <li><input id="extra-onion" (click)='addOnion()'  type="checkbox" name="onions" value="onions"> extra-onions <span>onions price</span></li>
-                <li><input id="extra-tomato" (click)='addTomato()'  type="checkbox" name="tomatos" value="tomatos"> extra-tomatos <span>tomatos price</span></li>
+                <li><span><input id="extra-cheese" (click)='addCheese()'  type="checkbox" name="cheese" value="cheese"> extra-cheese</span> <span class="priceStyle">$ {{extraChessePrice}}</span></li>
+                <li><span><input id="extra-sauce" (click)='addSauce()'  type="checkbox" name="sauce" value="sauce"> extra-sauce</span> <span class="priceStyle">$ {{extraSaucePrice}}</span></li>
+                <li><span><input id="extra-onion" (click)='addOnion()'  type="checkbox" name="onions" value="onions"> extra-onions</span> <span class="priceStyle">$ {{extraOnionPrice}}</span></li>
+                <li><span><input id="extra-tomato" (click)='addTomato()'  type="checkbox" name="tomatos" value="tomatos"> extra-tomatos</span> <span class="priceStyle">$ {{extraTomatoPrice}}</span></li>
                 
             </ul>
 
         </div>
+        
+        
 
         <div class="add-to-cart my-5">
-            <button (click)='addToCart()' class="btn btn-warning">add to cart</button>
+            <button (click)='addToCart()' class="btn ">add to cart</button>
 
         </div>
 

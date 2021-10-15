@@ -8,6 +8,10 @@ import { MenuModule } from './menu/menu.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 // import { MenuRoutingModule } from './menu/menu-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AppRoutingModule,        // for routes
     // MenuModule,
     // MenuRoutingModule          222222222222222222
-   
+    HttpClientModule ,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

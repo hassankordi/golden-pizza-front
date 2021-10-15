@@ -1,0 +1,40 @@
+// @import "../../main-page/main-page.component.scss";
+@import "../../main-page/main-page.component.scss";
+body{
+   
+    background-color: tomato;
+}
+.container-fluid{
+    background-color: #efefef;
+    // background-color: tomato;
+   
+    padding: 80px 0px;
+    .container{
+       
+        padding: 50px ;
+        width: 60%;
+      
+        background-color: #fff;
+        box-shadow: rgb(213 213 213 / 50%) 0px 4px 4px 0px;
+        box-shadow: rgb(171 169 171) 0px 0px 5px 0px;
+        border-radius: 8px;
+        form{
+            width: 70%;
+            label{
+                font-size: 18px;
+                font-family: $open-font;
+                font-weight: 700;
+                margin: 10px;
+            }
+            i{
+                font-weight: 700;
+            }
+        }
+       
+        .show_password{
+            margin-top: 10px;
+            background-color: tomato;
+        }
+
+    }
+}

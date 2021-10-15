@@ -92,7 +92,10 @@ export class MenuPageComponent implements OnInit {
       id: "1",
       title: "The Golden Pizza",
       over_view: "Pepperoni, sausage, mushrooms, onions, green peppers.",
-      price: 15.58,
+     
+      smallPrice: 15.58,
+      mediumPrice: 17.98,
+      largePrice: 20.38,
       img_src: false
     },
     {
@@ -100,14 +103,18 @@ export class MenuPageComponent implements OnInit {
       title: "BBQ Chicken Pizza",
       over_view: "Chicken, grilled onions, BBQ base sauce.",
       img_src: "https://slice-menu-assets-prod.imgix.net/3338/1606193248_3070ebe2ff?fit=crop&w=80&h=80",
-      price: 11.98
+      smallPrice: 11.98,
+      mediumPrice: 14.38,
+      largePrice: 16.78,
     },
     {
       id: "3",
       title: "The Veggie Pizza",
       over_view: "Onions, green peppers, mushrooms, black olives.",
       img_src: "https://slice-menu-assets-prod.imgix.net/3338/1606193196_a470704516?fit=crop&w=80&h=80",
-      price: 15.58
+      smallPrice: 15.58,
+      mediumPrice: 16.78,
+      largePrice: 17.98,
     },
     {
       id: "4",
@@ -115,14 +122,18 @@ export class MenuPageComponent implements OnInit {
       over_view: "Chicken, grilled mushrooms, alfredo base sauce.",
       img_src: false,
 
-      price: 11.98
+      smallPrice: 11.98,
+      mediumPrice: 14.38,
+      largePrice: 16.78,
     },
     {
       id: "5",
       title: "Meat Lover's Pizza",
       over_view: "Pepperoni, sausage, beef, ham, bacon.",
       img_src: "https://slice-menu-assets-prod.imgix.net/3338/1606193224_a5df71c4ee?fit=crop&w=80&h=80",
-      price: 16.78
+      smallPrice: 16.78,
+      mediumPrice: 19.18,
+      largePrice: 20.38,
     },
 
 
@@ -341,23 +352,44 @@ export class MenuPageComponent implements OnInit {
   toppingsArr: any = []
   toppingsPriceArr: any = []
 
+
+  
+totalSauce1:any= ()=>{
+  let totalS1:any;
+  if(this.toppingsPriceArr.length){
+    totalS1 = this.toppingsPriceArr[0]*this.pizzaCounter
+
+    return totalS1;
+  }
+  else{
+    return 0;
+  }
+}
+totalSauce2:any= ()=>{
+  let totalS2:any;
+  if(this.toppingsPriceArr.length>1){
+    totalS2 = this.toppingsPriceArr[1]*this.pizzaCounter
+
+    return totalS2;
+  }
+  else{
+    return 0;
+  }
+}
+
   addCheese() {
 
     
     if ((document.getElementById("extra-cheese") as HTMLFormElement).checked) {
 
       if (this.toppingsArr.length > 1) {
-        // (document.getElementById("extra-cheese") as HTMLFormElement).disabled
-        // (document.getElementById("extra-sauce") as HTMLFormElement).disabled
-        // (document.getElementById("extra-onion") as HTMLFormElement).disabled
-        // (document.getElementById("extra-tomato") as HTMLFormElement).disabled
         console.log("hhhhhhhhhhhhhey you can't   cheeck");
         (document.getElementById("extra-cheese") as HTMLFormElement).checked = false
   
       }
       else{
-        this.toppingsPriceArr.push(this.extraChessePrice)
-        this.toppingsArr.push('+Extra cheese')
+        this.toppingsPriceArr.push(this.extraChessePrice) // push for the price
+        this.toppingsArr.push('+Extra cheese')    // push for the name of toppings
         console.log(this.toppingsArr);
         console.log(this.toppingsPriceArr);
       }
@@ -552,20 +584,45 @@ export class MenuPageComponent implements OnInit {
 
 
 
-
 cartArr:any[] = []
 
   addToCart(){
+    this.toppingsPriceArr[0]=this.totalSauce1();
+    this.toppingsPriceArr[1]=this.totalSauce2();
     let obj = {
       pizzaTitle :this.pizzaTitle,
       pizzaCount:this.pizzaCounter ,
       size:this.pizzaSize , 
-      total :this.myTotal.toFixed(2),
+      pizzaPrice:this.myTotal.toFixed(2),
+      total :(this.myTotal +this.toppingsPriceArr[0]+this.toppingsPriceArr[1]).toFixed(2),
       toppingsArr:this.toppingsArr,
       toppingsPriceArr:this.toppingsPriceArr,
     }
     this.cartArr.push(obj)
     this.closeModal()
+  }
+  deleteItemFromCart(pizza:any){
+  console.log(this.cartArr);
+for(let i =0;i<this.cartArr.length;i++){
+  if(this.cartArr[i]==pizza){
+   
+    this.cartArr.splice(i,1)
+  }
+}
+return this.cartArr
+
+
+// this.cartArr = this.cartArr.filter((x)=>{
+//   // console.log(this.cartArr[x]!=pizza);
+//   if(this.cartArr[x]==pizza){
+//    this.cartArr =this.cartArr[x].pop()
+
+//   }
+//   console.log(this.cartArr);
+
+  
+//   // return ;
+// })
   }
 
 
