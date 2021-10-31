@@ -1,0 +1,35 @@
+<p>dash-board works!</p>
+
+
+<button routerLink='/pizza-info' class="btn btn-success">add pizza</button>
+<button class="btn btn-danger">block user</button>
+<button (click)='getAllUsers()' routerLink='/user-info' class="btn btn-primary">get user info</button>
+<!-- 
+<table *ngIf='getUsers' class="table table-striped">
+    <thead class="thead-light"> 
+
+   
+    <tr>
+        <th>name </th>
+        <th>email </th>
+        <th>role </th>
+        <th>phone </th>
+        <th>verified </th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let x of users">
+        
+        <td>{{x.name}}</td>
+        <td>{{x.email}}</td>
+        <td >{{x.role}}</td>
+         [ngClass]="{'bg-success' : x.role=='admin'}" 
+        <td>{{x.phone}}</td>
+        <td >{{x.isVerified}}</td>
+         [ngClass]="{'bg-warning' : x.isVerified==false}"
+        
+    </tr>
+</tbody>
+   
+  
+</table> -->

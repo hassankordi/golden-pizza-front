@@ -1,0 +1,96 @@
+<p>pizza-info works!</p>
+
+
+<div class="container-fluid">
+  
+
+    <div class="container">
+
+        <form (ngSubmit)="sendPizzaData()" [formGroup]="pizzaData" class="form row m-auto">
+            <div class="col-lg-12">
+                <label for="">title </label>
+                <input formControlName="title" class="form-control" type="text">
+                <div *ngIf='
+                pizzaData.controls.title.touched &&
+                pizzaData.controls.title.invalid
+                ' class="alert alert-danger" role="alert">
+                    <i> title invalid !!</i>
+                </div>
+            </div>
+            <div class="col-lg-12">
+
+                <label for="">over_view</label>
+                <input formControlName="over_view" class="form-control" type="text">
+                <div *ngIf='
+                pizzaData.controls.over_view.touched &&
+                pizzaData.controls.over_view.invalid
+                ' class="alert alert-danger" role="alert">
+                    <i> over_view invalid !!</i>
+                </div>
+
+            </div>
+            <!--------make option show smallPrice-->
+            <div class="col-lg-12">
+                <label for="">smallPrice</label>
+                <input formControlName="smallPrice" class="form-control" type="text">
+               
+                <div *ngIf='
+                pizzaData.controls.smallPrice.touched &&
+                pizzaData.controls.smallPrice.invalid
+                ' class="alert alert-danger" role="alert">
+                    <i> invalid smallPrice !!</i>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <label for="">medium price</label>
+                <input formControlName="mediumPrice" class="form-control" type="text">
+               
+                <div *ngIf='
+                pizzaData.controls.mediumPrice.touched &&
+                pizzaData.controls.mediumPrice.invalid
+                ' class="alert alert-danger" role="alert">
+                    <i> invalid mediumPrice !!</i>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <label for="">large price</label>
+                <input formControlName="largePrice" class="form-control" type="text">
+               
+                <div *ngIf='
+                pizzaData.controls.largePrice.touched &&
+                pizzaData.controls.largePrice.invalid
+                ' class="alert alert-danger" role="alert">
+                    <i> invalid largePrice !!</i>
+                </div>
+            </div>
+
+         
+         
+            <div class="col-lg-12">
+                <label for="">image </label>
+                <input formControlName="img_src" class="form-control" type="file">
+                <div *ngIf='
+                pizzaData.controls.img_src.touched &&
+                pizzaData.controls.img_src.invalid
+                ' class="alert alert-danger" role="alert">
+                    <i> invalid img_src !!</i>
+                </div>
+            </div> 
+            <!-- [disabled]='pizzaData.valid' -->
+            <button type="submit" class="btn btn-info my-5 col-6 m-auto"> Submit</button>
+            <div>
+                <i>{{message}}</i>
+            </div>
+            <!-- <p>already have account ? <span id="loginLink" routerLink ='/login'>login now</span></p> -->
+           
+
+        </form>
+    </div>
+   
+
+
+
+
+</div>
+
+

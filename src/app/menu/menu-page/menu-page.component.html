@@ -15,7 +15,10 @@
                         </svg>
                     </div> -->
                     <div class="login ml-auto">
-                        <button  routerLink='/login'>login</button>
+                        <button *ngIf='!isLogin' routerLink='/login'>login</button>
+                    </div>
+                    <div class="login ml-auto">
+                        <button *ngIf='isAdmin' routerLink='/dashBoard'>dash board</button>
                     </div>
 
 
@@ -176,8 +179,10 @@
 
                     </div>
                     <div class="col-lg-6">
-                        <div class="close-info">
 
+                        <!-- close box in home pizza  -->
+                        <div class="close-info">
+<!-- 
                             <svg xmlns="http://www.w3.org/2000/svg" width="70" height="45" fill="none"
                                 viewBox="0 0 70 45" aria-hidden="true">
                                 <title id="closed_shop">Closed Shop</title>
@@ -197,26 +202,26 @@
                                 <path fill="#fff" fill-rule="evenodd"
                                     d="M57.692 23.192c-.807-.807-1.73-1.038-2.769-.923l-3.346.577-.346 8.308 3.346-.462c1.154-.115 2.077-.576 2.885-1.5.807-.923 1.269-1.961 1.269-3.115.115-1.154-.346-2.192-1.039-2.885zm-3.923 1.27l1.154-.116c1.154-.23 1.846.462 1.846 1.846 0 .577-.115 1.154-.577 1.616-.461.461-.923.692-1.5.808l-1.154.115.231-4.27z"
                                     clip-rule="evenodd"></path>
-                            </svg>
+                            </svg> -->
 
-                            <p>Opening at 11:00 AM</p>
-                            <button>order for later</button>
+                            <!-- <p>Opening at 11:00 AM</p>
+                            <button>order for later</button> -->
                         </div>
 
                     </div>
 
                 </div>
 
-
+<!-- 
                 <div class="home-layer">
 
-                </div>
+                </div> -->
 
             </div>
 
 
 
-            <!----------------nav & cat-------------------->
+            <!----------------nav & categories-------------------->
             <div class="categories-con">
                 <nav>
 
@@ -225,7 +230,7 @@
                     <h3>Deals</h3>
                     <div class="col-lg-6 deals-btn">
 
-                        <p (click)='toggleDeals()'><i class="dollar-sign">$</i> 9 Deals and coupons available
+                        <p (click)='toggleDeals()'><i class="dollar-sign">$</i> <span>{{dealsNum}}</span> Deals and coupons available
                             <i [class]='!dealsIsOpen?"fas fa-chevron-down":"fas fa-chevron-up"'
                                 class="fas fa-chevron-down"></i>
                         </p>
@@ -252,6 +257,7 @@
                 <!-- e3ml edit hena w asta5dem array  -->
                 <div class="pizza row">
                     <h3>Pizza</h3>
+                    <!-- <h3>{{sec1}}</h3> -->
                     <div *ngFor='let x of pizza' (click)='openModal(x)'  class="col-md-6" >
                         <!-- [routerLink]='["/modal",x.id]' 
                         (click)='openModal(x)'-->
@@ -483,6 +489,8 @@
 
             </div>
             <div class="checkout-btn">
+                <!-- <i>hi {{allCost}}</i> -->
+                <!-- <i>hi {{getAllCost()}}</i> -->
                 <button disabled>Continue to Checkout</button>
             </div>
 

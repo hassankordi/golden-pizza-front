@@ -1,0 +1,64 @@
+
+<div class="container-fluid">
+  <div class="container">
+    <form class="form-container">
+        <label class="w-100" for="emailInp">
+           <i class="italick-message"> get user by email</i>
+            <input  class="form-control w-75"id="emailInp" type="text">
+            
+        </label> 
+       
+        <p *ngIf='userMessage' class="info-font">message : <i>{{userMessage}}</i></p>
+        <div *ngIf='user' class="oneUser">
+          
+            <p class="info-font">name : {{user.name}}</p>
+            <p class="info-font">email : {{user.email}}</p>
+            <p class="info-font">phone : {{user.phone}}</p>
+            <p class="info-font">role : {{user.role}}</p>
+            <p class="info-font">is verified : {{user.isVerified}}</p>
+ 
+        </div>
+ 
+     </form> 
+     <button class="btn btn-info" (click)='userByEmail()'>Get User</button> 
+
+  </div>
+   
+    
+<div class="container">
+  
+
+    <table *ngIf='getUsers' class="table table-striped w-75 m-auto">
+        <thead class="thead-light"> 
+    
+       
+        <tr>
+            <th>name </th>
+            <th>email </th>
+            <th>role </th>
+            <th>phone </th>
+            <th>verified </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let x of users">
+            
+            <td>{{x.name}}</td>
+            <td>{{x.email}}</td>
+            <td >{{x.role}}</td>
+            <!-- [ngClass]="{'bg-success' : x.role=='admin'}" -->
+            <td>{{x.phone}}</td>
+            <td >{{x.isVerified}}</td>
+            <!-- [ngClass]="{'bg-warning' : x.isVerified==false}" -->
+            
+        </tr>
+    </tbody>
+       
+      
+    </table>
+    
+</div>
+
+</div>
+
+

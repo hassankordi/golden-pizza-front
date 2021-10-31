@@ -3,13 +3,8 @@
 
     <div class="container ">
 
-        <button class="google-button row m-auto" (click)="signInWithGoogle()">
-            <!-- <i class="google-icon fab fa-google"></i> -->
-            <img class="google-icon" src="../../../assets/social-icons/icon_goolge.svg" alt="">
-            <i>continue with google</i>
-        </button>
         <form (ngSubmit)="sendData()" [formGroup]="userData" class="form row m-auto">
-            <!-- <div class="col-lg-12">
+            <div class="col-lg-12">
                 <label for="">name</label>
                 <input formControlName="name" class="form-control" type="text">
                 <div *ngIf='
@@ -18,7 +13,7 @@
                 ' class="alert alert-danger" role="alert">
                     <i> name invalid !!</i>
                 </div>
-            </div> -->
+            </div>
             <div class="col-lg-12">
 
                 <label for="">Email</label>
@@ -43,7 +38,7 @@
                     <i> invalid password !!</i>
                 </div>
             </div>
-<!-- 
+
             <div class="col-lg-12">
                 <label for="">Confirm Password</label>
                 <input formControlName="confirm_password" id="pass2" class="form-control" type="password">
@@ -75,13 +70,13 @@
                 ' class="alert alert-danger" role="alert">
                     <i> invalid location !!</i>
                 </div>
-            </div> -->
+            </div> 
             <!-- [disabled]='userData.valid' -->
             <button type="submit" class="btn btn-info my-5 col-6 m-auto"> Submit</button>
             <div>
                 <i>{{message}}</i>
             </div>
-            <p>Don't have an account yet ? <span id="regesterLink" routerLink ='/regestration'>regester now</span></p>
+            <p>already have account ? <span id="loginLink" routerLink ='/login'>login now</span></p>
            
 
         </form>
