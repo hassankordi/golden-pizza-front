@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { compileDeclareNgModuleFromMetadata } from '@angular/compiler';
 
@@ -10,7 +10,10 @@ import { compileDeclareNgModuleFromMetadata } from '@angular/compiler';
 })
 export class UserService {
    
-  
+  isLogin =false
+  isAdmin:boolean = false 
+  isUser:boolean = false 
+ 
 
 
   login(data: any): Observable<any> {
@@ -50,7 +53,63 @@ export class UserService {
       
     })
   }
+  getUserByPhone(phone:any,token:any): Observable<any>{
+    console.log(phone);
+     let headers_object = new HttpHeaders().set("Authorization", "Bearer " + token);
+    //  let params_object = new HttpParams().append('email',email);
+    const body:object={
+      phone
+    }
 
+    return this._HttpClient.post(`http://localhost:2526/users/byPhone`,body,{
+  
+      headers:headers_object,
+      observe:'body',
+      
+      
+      
+    })
+
+  }
+
+
+
+
+  blockUserByEmail(email:any,token:any): Observable<any> {
+    console.log(email);
+     let headers_object = new HttpHeaders().set("Authorization", "Bearer " + token);
+    //  let params_object = new HttpParams().append('email',email);
+    const body:object={
+      email
+    }
+
+    return this._HttpClient.patch(`http://localhost:2526/users/blockByEmail`,body,{
+  
+      headers:headers_object,
+      observe:'body',
+      
+      
+      
+    })
+  }
+  blockUserByPhone(phone:any,token:any): Observable<any>{
+    console.log(phone);
+     let headers_object = new HttpHeaders().set("Authorization", "Bearer " + token);
+    //  let params_object = new HttpParams().append('email',email);
+    const body:object={
+      phone
+    }
+
+    return this._HttpClient.patch(`http://localhost:2526/users/blockByPhone`,body,{
+  
+      headers:headers_object,
+      observe:'body',
+      
+      
+      
+    })
+
+  }
 
 
   /* test code */

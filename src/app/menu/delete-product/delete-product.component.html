@@ -1,0 +1,157 @@
+<button routerLink='/dashBoard' class="btn btn-secondary m-3">Dash Board</button>
+
+<div class="container p-5">
+
+   
+   
+     <label  class="w-100" for="IdInp">
+         <i class="italick-message"> Delete Product By ID</i>
+          <input  class="form-control w-75"id="IdInp" type="text">
+          
+      </label> 
+    
+     <p *ngIf='message' class="info-font">message : <i>{{message}}</i></p>
+    
+     <button  class="btn btn-danger mt-5" (click)='deleteById()'>Delete This Product</button> 
+
+
+
+     <div class="tables">
+         <h4 class="m-4">Pizza Items</h4>
+         <div>
+             <!-- evry cat is a array -->
+    
+
+             <table class="table table-hover table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <!-- <th scope="col">Handle</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor='let x of pizza; let i = index'>
+                    <th scope="row">{{i}}</th>
+                    <td>{{x._id}}</td>
+                    <td>{{x.title}}</td>
+                    <!-- <td>@mdo</td> -->
+                  </tr>
+                  
+                </tbody>
+              </table>
+
+         </div>
+
+         <h4>Deals Items</h4>
+         <div>
+            <!-- evry cat is a array -->
+   
+
+            <table class="table table-hover table-dark">
+               <thead>
+                 <tr>
+                   <th scope="col">#</th>
+                   <th scope="col">ID</th>
+                   <th scope="col">Title</th>
+                   <th scope="col">Over_view</th>
+                   <!-- <th scope="col">Handle</th> -->
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr *ngFor='let x of deals; let i = index'>
+                   <th scope="row">{{i}}</th>
+                   <td>{{x._id}}</td>
+                   <td>{{x.title}}</td>
+                   <td>{{x.over_view}}</td>
+                   <!-- <td>@mdo</td> -->
+                 </tr>
+                 
+               </tbody>
+             </table>
+
+        </div>
+        <h4>Additions Items</h4>
+        <div>
+           <!-- evry cat is a array -->
+  
+
+           <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Title</th>
+                  <!-- <th scope="col">Handle</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor='let x of additions; let i = index'>
+                  <th scope="row">{{i}}</th>
+                  <td>{{x._id}}</td>
+                  <td>{{x.title}}</td>
+                  <!-- <td>@mdo</td> -->
+                </tr>
+                
+              </tbody>
+            </table>
+
+       </div>
+       <h4>Combos Items</h4>
+       <div>
+          <!-- evry cat is a array -->
+ 
+
+          <table class="table table-hover table-dark">
+             <thead>
+               <tr>
+                 <th scope="col">#</th>
+                 <th scope="col">ID</th>
+                 <th scope="col">Title</th>
+                 <!-- <th scope="col">Handle</th> -->
+               </tr>
+             </thead>
+             <tbody>
+               <tr *ngFor='let x of combos; let i = index'>
+                 <th scope="row">{{i}}</th>
+                 <td>{{x._id}}</td>
+                 <td>{{x.title}}</td>
+                 <!-- <td>@mdo</td> -->
+               </tr>
+               
+             </tbody>
+           </table>
+
+      </div>
+      <h4>Speciality Items</h4>
+      <div>
+         <!-- evry cat is a array -->
+
+
+         <table class="table table-hover table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <!-- <th scope="col">Handle</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let x of specialty; let i = index'>
+                <th scope="row">{{i}}</th>
+                <td>{{x._id}}</td>
+                <td>{{x.title}}</td>
+                <!-- <td>@mdo</td> -->
+              </tr>
+              
+            </tbody>
+          </table>
+
+     </div>
+
+         
+
+     </div>
+</div>

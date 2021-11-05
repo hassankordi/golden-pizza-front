@@ -2,35 +2,37 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/user.service';
 
 @Component({
-  selector: 'app-user-info',
-  templateUrl: './user-info.component.html',
-  styleUrls: ['./user-info.component.scss']
+  selector: 'app-block-user',
+  templateUrl: './block-user.component.html',
+  styleUrls: ['./block-user.component.scss']
 })
-export class UserInfoComponent implements OnInit {
+export class BlockUserComponent implements OnInit {
 
-  byEmail: boolean = false;
-  byPhone: boolean = false;
-
-  getByEmail() {
+  blockByEmail(){
     this.byEmail = true;
     this.byPhone = false;
     console.log(this.byPhone);
     console.log(this.byEmail);
 
-
   }
-  getByPhone() {
+ 
+  blockByPhone() {
     this.byEmail = false;
     this.byPhone = true
     console.log(this.byPhone);
     console.log(this.byEmail);
   }
+  
+  byEmail: boolean = false;
+  byPhone: boolean = false;
+
+  
 
 
 
-  getUsers: boolean = true;
+  
   token = localStorage.getItem('userLoginToken')
-  users: any = []
+  
   user: any;
   email: any;
   phone: any;
@@ -40,7 +42,7 @@ export class UserInfoComponent implements OnInit {
     console.log((document.getElementById("emailInp") as HTMLFormElement).value);
 
 
-    this._UserService.getUserByEmail(this.email, this.token).subscribe((result) => {
+    this._UserService.blockUserByEmail(this.email, this.token).subscribe((result) => {
       console.log(result);
       this.user = result.user;
       this.userMessage = result.message
@@ -58,7 +60,7 @@ export class UserInfoComponent implements OnInit {
     console.log((document.getElementById("phoneInp") as HTMLFormElement).value);
 
 
-    this._UserService.getUserByPhone(this.phone, this.token).subscribe((result) => {
+    this._UserService.blockUserByPhone(this.phone, this.token).subscribe((result) => {
       console.log(result);
       this.user = result.user;
       this.userMessage = result.message
@@ -74,30 +76,9 @@ export class UserInfoComponent implements OnInit {
 
 
 
-  getAllUsers() {
-
-    this.getUsers = !this.getUsers
-  }
-
-  constructor(private _UserService: UserService) {
-
-    this._UserService.getAllUsers(this.token).subscribe((results) => {
-      console.log('results');
-
-      console.log(results);
-      this.users = results.users;
-
-      // this.getAllUsers()
-
-    }, (err) => {
-      console.log(err);
-
-    })
-
-  }
+  constructor(private _UserService:UserService ) { }
 
   ngOnInit(): void {
-
   }
 
 }

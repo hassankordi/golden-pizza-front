@@ -1,12 +1,24 @@
+<button routerLink='/dashBoard' class="btn btn-secondary m-3">Dash Board</button>
 
 <div class="container-fluid">
   <div class="container">
+    <button class="btn btn-success" (click)='getByEmail()'> Get By Email</button>
+    <button class="btn btn-success" (click)='getByPhone()'> Get By Phone</button>
+
     <form class="form-container">
-        <label class="w-100" for="emailInp">
+      
+
+
+        <label *ngIf='byEmail' class="w-100" for="emailInp">
            <i class="italick-message"> get user by email</i>
             <input  class="form-control w-75"id="emailInp" type="text">
             
         </label> 
+        <label *ngIf='byPhone' class="w-100" for="phoneInp">
+            <i class="italick-message"> get user by phone</i>
+             <input  class="form-control w-75"id="phoneInp" type="text">
+             
+         </label> 
        
         <p *ngIf='userMessage' class="info-font">message : <i>{{userMessage}}</i></p>
         <div *ngIf='user' class="oneUser">
@@ -16,39 +28,43 @@
             <p class="info-font">phone : {{user.phone}}</p>
             <p class="info-font">role : {{user.role}}</p>
             <p class="info-font">is verified : {{user.isVerified}}</p>
+            <p class="info-font">is blocked : {{user.blocked}}</p>
  
         </div>
  
      </form> 
-     <button class="btn btn-info" (click)='userByEmail()'>Get User</button> 
+     <button *ngIf='byEmail' class="btn btn-info" (click)='userByEmail()'>Get User</button> 
+     <button *ngIf='byPhone' class="btn btn-info" (click)='userByPhone()'>Get User</button> 
 
   </div>
    
     
 <div class="container">
   
-
-    <table *ngIf='getUsers' class="table table-striped w-75 m-auto">
+    <!-- m-auto -->
+    <table *ngIf='getUsers' class="table table-striped w-75 ">
         <thead class="thead-light"> 
     
        
         <tr>
             <th>name </th>
-            <th>email </th>
+            <th  style="width: 10px;">email </th>
             <th>role </th>
             <th>phone </th>
             <th>verified </th>
+            <th>blocked </th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let x of users">
             
             <td>{{x.name}}</td>
-            <td>{{x.email}}</td>
+            <td style="padding: 2px !important;">{{x.email}}</td>
             <td >{{x.role}}</td>
             <!-- [ngClass]="{'bg-success' : x.role=='admin'}" -->
             <td>{{x.phone}}</td>
             <td >{{x.isVerified}}</td>
+            <td >{{x.blocked}}</td>
             <!-- [ngClass]="{'bg-warning' : x.isVerified==false}" -->
             
         </tr>

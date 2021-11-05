@@ -10,7 +10,9 @@ import { MenuRoutingModule } from './menu-routing.module';
 import { RegestrationComponent } from './regestration/regestration.component';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { UserInfoComponent } from './user-info/user-info.component';
-import { PizzaInfoComponent } from './pizza-info/pizza-info.component'; ///////
+import { PizzaInfoComponent } from './pizza-info/pizza-info.component';
+import { BlockUserComponent } from './block-user/block-user.component';
+import { DeleteProductComponent } from './delete-product/delete-product.component'; ///////
 
 
 
@@ -22,6 +24,8 @@ import { PizzaInfoComponent } from './pizza-info/pizza-info.component'; ///////
     DashBoardComponent,
     UserInfoComponent,
     PizzaInfoComponent,
+    BlockUserComponent,
+    DeleteProductComponent,
 
 
     // FormsModule

@@ -1,0 +1,26 @@
+<button routerLink='/dashBoard' class="btn btn-secondary m-3">Dash Board</button>
+<div class="container">
+
+    <button class="btn btn-danger m-3" (click)='blockByEmail()'> BLOCK By Email</button>
+    <button class="btn btn-danger m-3" (click)='blockByPhone()'> BLOCK By Phone</button>
+
+   
+    <label *ngIf='byEmail' class="w-100" for="emailInp">
+        <i class="italick-message"> BLOCK user by email</i>
+         <input  class="form-control w-75"id="emailInp" type="text">
+         
+     </label> 
+     <label *ngIf='byPhone' class="w-100" for="phoneInp">
+         <i class="italick-message"> BLOCK user by phone</i>
+          <input  class="form-control w-75"id="phoneInp" type="text">
+          
+      </label> 
+    
+     <p *ngIf='userMessage' class="info-font">message : <i>{{userMessage}}</i></p>
+    
+
+
+
+     <button *ngIf='byEmail' class="btn btn-danger mt-5" (click)='userByEmail()'>Block This User</button> 
+     <button *ngIf='byPhone' class="btn btn-danger mt-5" (click)='userByPhone()'>Block This User</button> 
+</div>

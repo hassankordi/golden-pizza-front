@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PizzaService } from '../pizza.service';
 
 
 @Component({
@@ -8,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
- 
-  constructor() { }
+ NumOfDeals:Number = 9;
+  constructor(private _PizzaService:PizzaService) { 
+    this._PizzaService.getDealsSec().subscribe((results)=>{
+      this.NumOfDeals = results.dealsSec.length
+
+    })
+
+  }
 
 
   ngOnInit(): void {

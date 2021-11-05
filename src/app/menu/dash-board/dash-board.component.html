@@ -1,35 +1,21 @@
-<p>dash-board works!</p>
+<button routerLink='/menu' class="btn btn-secondary m-3">Menu</button>
 
+<div class="container w-100 p-5">
+    <div class="row align-items-center">
+        <div class="header d-flex justify-content-center col-12 mb-4">
+            <span class="m-auto ">Hello in our company </span>
+        </div>
 
-<button routerLink='/pizza-info' class="btn btn-success">add pizza</button>
-<button class="btn btn-danger">block user</button>
-<button (click)='getAllUsers()' routerLink='/user-info' class="btn btn-primary">get user info</button>
-<!-- 
-<table *ngIf='getUsers' class="table table-striped">
-    <thead class="thead-light"> 
+        <div class="buttons d-flex justify-content-center col-12">
+            <button routerLink='/deleteProduct' class="btn btn-danger">Delete Product</button>
+            <button routerLink='/pizza-info' class="btn btn-success">Add Product</button>
+            <button routerLink='/blockUser' class="btn btn-danger">Block User</button>
+            <button (click)='getAllUsers()' routerLink='/user-info' class="btn btn-primary">Get User Info</button>
 
-   
-    <tr>
-        <th>name </th>
-        <th>email </th>
-        <th>role </th>
-        <th>phone </th>
-        <th>verified </th>
-    </tr>
-</thead>
-<tbody>
-    <tr *ngFor="let x of users">
-        
-        <td>{{x.name}}</td>
-        <td>{{x.email}}</td>
-        <td >{{x.role}}</td>
-         [ngClass]="{'bg-success' : x.role=='admin'}" 
-        <td>{{x.phone}}</td>
-        <td >{{x.isVerified}}</td>
-         [ngClass]="{'bg-warning' : x.isVerified==false}"
-        
-    </tr>
-</tbody>
-   
-  
-</table> -->
+        </div>
+        <div class="hint">
+            <h3>hint :</h3>
+            <p>This page is for admin only. If you are not admin, you will not be able to reach here</p>
+        </div>
+    </div>
+</div>

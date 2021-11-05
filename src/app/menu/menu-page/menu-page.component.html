@@ -16,6 +16,7 @@
                     </div> -->
                     <div class="login ml-auto">
                         <button *ngIf='!isLogin' routerLink='/login'>login</button>
+                        <button *ngIf='isLogin' (click)='logOut()'>logOut</button>
                     </div>
                     <div class="login ml-auto">
                         <button *ngIf='isAdmin' routerLink='/dashBoard'>dash board</button>
@@ -182,7 +183,7 @@
 
                         <!-- close box in home pizza  -->
                         <div class="close-info">
-<!-- 
+                            <!-- 
                             <svg xmlns="http://www.w3.org/2000/svg" width="70" height="45" fill="none"
                                 viewBox="0 0 70 45" aria-hidden="true">
                                 <title id="closed_shop">Closed Shop</title>
@@ -212,7 +213,7 @@
 
                 </div>
 
-<!-- 
+                <!-- 
                 <div class="home-layer">
 
                 </div> -->
@@ -227,10 +228,11 @@
 
                 </nav>
                 <div class="dealsSec row">
-                    <h3>Deals</h3>
+                    <h3 class="categories-h3">Deals</h3>
                     <div class="col-lg-6 deals-btn">
 
-                        <p (click)='toggleDeals()'><i class="dollar-sign">$</i> <span>{{dealsNum}}</span> Deals and coupons available
+                        <p (click)='toggleDeals()'><i class="dollar-sign">$</i> <span>{{dealsNum}}</span> Deals and
+                            coupons available
                             <i [class]='!dealsIsOpen?"fas fa-chevron-down":"fas fa-chevron-up"'
                                 class="fas fa-chevron-down"></i>
                         </p>
@@ -238,29 +240,26 @@
                     </div>
                     <div class="row" [class.d-none]='!dealsIsOpen'>
 
-                        <div  *ngFor="let x of dealsSec" class="col-lg-6 my-3">
-                          
+                        <div (click)='openModal1(x)' *ngFor="let x of dealsSec" class="col-lg-6 my-3">
+
                             <div class="item">
                                 <p>{{x.over_view}}</p>
                                 <span>${{x.price}}</span>
                             </div>
 
                         </div>
-                       
+
                     </div>
 
 
 
                 </div>
 
-
-                <!-- e3ml edit hena w asta5dem array  -->
                 <div class="pizza row">
-                    <h3>Pizza</h3>
-                    <!-- <h3>{{sec1}}</h3> -->
-                    <div *ngFor='let x of pizza' (click)='openModal(x)'  class="col-md-6" >
-                        <!-- [routerLink]='["/modal",x.id]' 
-                        (click)='openModal(x)'-->
+                    <h3 class="categories-h3">Pizza</h3>
+
+                    <div *ngFor='let x of pizza' (click)='openModal(x)' class="col-md-6">
+
                         <div class="item">
                             <div>
                                 <span>{{x.title}}</span>
@@ -273,12 +272,12 @@
                         </div>
 
                     </div>
-                
+
 
 
                 </div>
                 <div class="specialtyPizza row">
-                    <h3>Specialty Pizza</h3>
+                    <h3 class="categories-h3">Specialty Pizza</h3>
                     <div *ngFor='let x of specialtyPizza' (click)='openModal(x)' class="col-md-6">
                         <div class="item ">
                             <div>
@@ -299,15 +298,15 @@
 
                 </div>
                 <div class="combos row">
-                    <h3>combos</h3>
+                    <h3 class="categories-h3">Combos</h3>
                     <!-- (click)="openModal($event)" -->
 
-                    <div class="col-md-6">
+                    <div *ngFor='let x of combos' (click)='openModal2(x)' class="col-md-6">
                         <div class="item">
                             <div>
-                                <span>Gyro Plate</span>
-                                <p>Gyro, Greek salad & flat pita.</p>
-                                <p>$10.78</p>
+                                <span>{{x.title}}</span>
+                                <p>{{x.over_view}}</p>
+                                <p>${{x.price}}</p>
 
                             </div>
 
@@ -315,7 +314,7 @@
                         </div>
 
                     </div>
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="item">
                             <div>
                                 <span>Cheeseburger, Fries & Drink</span>
@@ -369,59 +368,86 @@
 
                         </div>
 
-                    </div>
+                    </div> -->
 
 
                 </div>
-                <div class="specials row">
-                    <h3>Specials</h3>
+                <div class="additions row">
+                    <h3 class="categories-h3">Additions</h3>
+                    <!-- (click)="openModal($event)" -->
 
-
-                    <div *ngFor='let x of specials' class="col-md-6">
-                        <div  class="item">
-                            <!-- (click)='openModal($event)' -->
-                            <div>
-                                <span>{{x.title}}</span>
-                                <!-- <span>hhhhhhhhhhhhhhhhhhh</span> -->
-                                <!-- <p>{{x.over_view}}</p> -->
-                                <p>${{x.price}}</p>
-
-                            </div>
-                            <!-- <img [src]='x.img_src' alt="">  -->
-                            <!-- <img [src]='' alt="">  -->
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="dailySpecials row">
-                    <h3>Daily Specials</h3>
-
-
-                    <div *ngFor='let x of dailySpecials' class="col-md-6">
+                    <div *ngFor='let x of additions' (click)='openModal3(x)' class="col-md-6">
                         <div class="item">
                             <div>
                                 <span>{{x.title}}</span>
-                                <!-- <span>hhhhhhhhhhhhhhhhhhh</span> -->
                                 <p>{{x.over_view}}</p>
-                                <p>${{x.price}}</p>
+                                <p>${{x.smallPrice}}</p>
 
                             </div>
-                            <!-- <img [src]='x.img_src' alt="">  -->
-                            <!-- <img [src]='' alt="">  -->
+                            <img [class.d-none]="!x.img_src" [src]='x.img_src' alt="">
+
+
+                        </div>
+
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <div class="item">
+                            <div>
+                                <span>Cheeseburger, Fries & Drink</span>
+
+                                <p>$10.78</p>
+
+                            </div>
 
 
                         </div>
 
                     </div>
 
+                    <div class="col-md-6">
+                        <div class="item">
+                            <div>
+                                <span>Three Pieces Chicken Tenders, Fries & Drink</span>
+                                <p>With ranch, BBQ sauce, honey mustard sauce, and marinara.</p>
+
+                                <p>$9.58</p>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="item">
+                            <div>
+                                <span>Fried Fish, Fries & Drink</span>
+
+                                <p>$11.98</p>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="item">
+                            <div>
+                                <span>Chicken Nuggets, Fries & Drink</span>
+
+                                <p class="price">$8.38</p>
+
+                            </div>
+
+
+                        </div>
+
+                    </div> -->
+
+
                 </div>
-
-
-
-
 
             </div>
 
@@ -437,7 +463,10 @@
     <!------------------------------------------------------------cart----------------------------------------------------->
 
     <div class="col-lg-3">
-        <div class="cart-con">
+     
+
+        <div id="cart-con" class="cart-con">
+            <i id="close-cart-icon" (click)="closeCart()" class="far fa-times-circle"></i>
             <span class="header">Your Cart</span>
             <p class="asap-p">ASAP <span class="del-toggle">{{word}}</span><span class="update"> Update</span></p>
             <div class="cartBtn-con">
@@ -448,40 +477,42 @@
                 <p>We can’t tell if the restaurant delivers to your location unless you provide us with an address.</p>
                 <span>Add Address</span>
             </div>
-<!--------------------------------------------order place------------------------------------------------------------------>
+            <!--------------------------------------------order place------------------------------------------------------------------>
 
             <div class="order-place">
                 <i *ngIf='!cartArr.length' class="fas fa-shopping-cart"></i>
 
                 <p *ngIf='!cartArr.length'>Your cart is empty. Select from the menu to start an order!</p>
-<!--------------------------------------------order box------------------------------------------------------------------>
-                <div class="order-box" *ngFor='let pizza of cartArr'>
-                   <div class="row">
-                       <div class="col-1 ">
-                        <p class="pizza-count-p">{{pizza.pizzaCount}} </p>
+                <!--------------------------------------------order box------------------------------------------------------------------>
+                <div class="order-box py-4" *ngFor='let pizza of cartArr'>
+                    <div class="row">
+                        <div class="col-1 ">
+                            <p class="pizza-count-p">{{pizza.pizzaCount}} </p>
 
-                       </div>
-                       <div class="col-10 sub-box">
-                        <p class="pizza-title-p"> {{pizza.pizzaTitle}} </p>
-                        
-                        <p class="pizza-size-p"><span>{{pizza.size}} </span><span> ${{pizza.pizzaPrice}}</span> </p>
-        
-                        <p *ngIf='pizza.toppingsArr[0]' class="pizza-size-p"><span>{{pizza.toppingsArr[0]}}</span><span> ${{pizza.toppingsPriceArr[0]}}</span></p>
-                        <p *ngIf='pizza.toppingsArr[1]' class="pizza-size-p"><span>{{pizza.toppingsArr[1]}}</span><span> ${{pizza.toppingsPriceArr[1]}}</span></p>
-    
-                        <p class="pizza-total-p">total $ {{pizza.total}} </p>
-    
-                       
-    
+                        </div>
+                        <div class="col-10 sub-box">
+                            <p class="pizza-title-p"> {{pizza.pizzaTitle}} </p>
 
-                       </div>
-                       <div class="col-1">
-                        <i (click)="deleteItemFromCart(pizza)" class="far fa-times-circle"></i>
-                       </div>
+                            <p class="pizza-size-p"><span>{{pizza.size}} </span><span> ${{pizza.pizzaPrice}}</span> </p>
 
-                   </div>
+                            <p *ngIf='pizza.toppingsArr[0]' class="pizza-size-p">
+                                <span>{{pizza.toppingsArr[0]}}</span><span> ${{pizza.toppingsPriceArr[0]}}</span></p>
+                            <p *ngIf='pizza.toppingsArr[1]' class="pizza-size-p">
+                                <span>{{pizza.toppingsArr[1]}}</span><span> ${{pizza.toppingsPriceArr[1]}}</span></p>
+
+                            <p class="pizza-total-p">total $ {{pizza.total}} </p>
+
+
+
+
+                        </div>
+                        <div class="col-1">
+                            <i (click)="deleteItemFromCart(pizza)" class="far fa-times-circle"></i>
+                        </div>
+
+                    </div>
                 </div>
-<!-----------------------------------------policy------->
+                <!-----------------------------------------policy------->
 
                 <div class="policy">
 
@@ -491,7 +522,12 @@
             <div class="checkout-btn">
                 <!-- <i>hi {{allCost}}</i> -->
                 <!-- <i>hi {{getAllCost()}}</i> -->
-                <button disabled>Continue to Checkout</button>
+                <!-- <i>{{calcAllCost()}}</i> -->
+                <!-- <i>{{ourTotal}}</i> -->
+                <button (click)='checkout()' [class]='{"disableBtn":disableBtn() }'
+                [disabled]='disableBtn()'>Continue to Checkout</button>
+                <!-- <button (click)='checkout()' [class]='{"disableBtn":!checkBtnIsAvailable }'
+                [disabled]='!checkBtnIsAvailable'>Continue to Checkout</button> -->
             </div>
 
         </div>
@@ -501,15 +537,15 @@
 
 
 
-    <!------------------------------------------------------------modal----------------------------------------------------->
+<!------------------------------------------------------------modal----------------------------------------------------->
 
 <div id="myModal" class="myModal">
     <div class="modalBox">
         <i id="closeModal" (click)="closeModal()" class="fas fa-times"></i>
         <!-- <img [class.d-none]="!modalWithImg" [src]="modalImgSrc" alt="">  hint: images is not in high quality -->
         <h2 id="itemTitle"></h2>
-        
-      
+
+
         <h4 class="modal-headers">Quantity</h4>
         <div class="quantity">
             <div>
@@ -518,34 +554,41 @@
                 <i (click)="decreasePizza()" id="minusIcon" class="fas fa-minus-circle"></i>
             </div>
 
-        
+
             <p id="itemPrice"></p>
         </div>
 
-        <h4 class="modal-headers">Choose an option</h4>
-        <div class="choose-size">
+        <h4 id="chooseAnOption-h4" class="modal-headers">Choose an option</h4>
+        <div id="chooseAnOption-divCon" class="choose-size">
             <ul>
-               
-                <li><span><input id="smallSizeButton" (click)='orederInSmallSize()'  type="radio" name="size" value="small"> small</span> <span class="priceStyle">$ {{smallSizePrice}}</span></li>
-                <li> <span><input id="mediumSizeButton" (click)='orederInMediumSize()' type="radio"name="size" value="medium"> Medium</span> <span class="priceStyle">$ {{mediumSizePrice}}</span></li>
-                <li> <span><input id="largeSizeButton" (click)='orederInLargeSize()' type="radio"name="size" value="large"> large</span> <span class="priceStyle">$ {{largeSizePrice}}</span></li>
+
+                <li><span><input id="smallSizeButton" (click)='orederInSmallSize()' type="radio" name="size"
+                            value="small"> small</span> <span class="priceStyle">$ {{smallSizePrice}}</span></li>
+                <li> <span><input id="mediumSizeButton" (click)='orederInMediumSize()' type="radio" name="size"
+                            value="medium"> Medium</span> <span class="priceStyle">$ {{mediumSizePrice}}</span></li>
+                <li> <span><input id="largeSizeButton" (click)='orederInLargeSize()' type="radio" name="size"
+                            value="large"> large</span> <span class="priceStyle">$ {{largeSizePrice}}</span></li>
             </ul>
 
         </div>
-        <h4 class="modal-headers">Choose Up to Two Toppings</h4>
+        <h4 id="toppings-header" class="modal-headers">Choose Up to Two Toppings</h4>
 
-        <div class="add-toppings">
+        <div id="add-toppings" class="add-toppings">
             <ul>
-                <li><span><input id="extra-cheese" (click)='addCheese()'  type="checkbox" name="cheese" value="cheese"> extra-cheese</span> <span class="priceStyle">$ {{extraChessePrice}}</span></li>
-                <li><span><input id="extra-sauce" (click)='addSauce()'  type="checkbox" name="sauce" value="sauce"> extra-sauce</span> <span class="priceStyle">$ {{extraSaucePrice}}</span></li>
-                <li><span><input id="extra-onion" (click)='addOnion()'  type="checkbox" name="onions" value="onions"> extra-onions</span> <span class="priceStyle">$ {{extraOnionPrice}}</span></li>
-                <li><span><input id="extra-tomato" (click)='addTomato()'  type="checkbox" name="tomatos" value="tomatos"> extra-tomatos</span> <span class="priceStyle">$ {{extraTomatoPrice}}</span></li>
-                
+                <li><span><input id="extra-cheese" (click)='addCheese()' type="checkbox" name="cheese" value="cheese">
+                        extra-cheese</span> <span class="priceStyle">$ {{extraChessePrice}}</span></li>
+                <li><span><input id="extra-sauce" (click)='addSauce()' type="checkbox" name="sauce" value="sauce">
+                        extra-sauce</span> <span class="priceStyle">$ {{extraSaucePrice}}</span></li>
+                <li><span><input id="extra-onion" (click)='addOnion()' type="checkbox" name="onions" value="onions">
+                        extra-onions</span> <span class="priceStyle">$ {{extraOnionPrice}}</span></li>
+                <li><span><input id="extra-tomato" (click)='addTomato()' type="checkbox" name="tomatos" value="tomatos">
+                        extra-tomatos</span> <span class="priceStyle">$ {{extraTomatoPrice}}</span></li>
+
             </ul>
 
         </div>
-        
-        
+
+
 
         <div class="add-to-cart my-5">
             <button (click)='addToCart()' class="btn ">add to cart</button>
@@ -553,4 +596,56 @@
         </div>
 
     </div>
-</div> 
+</div>
+
+<!-------------------------------- payment modal------------------------->
+<!-------------------------------- payment modal------------------------->
+<!-------------------------------- payment modal------------------------->
+<div id="paymentModal" class="">
+
+    <div id="paymentModalBox" class="paymentModalBox">
+        <div *ngFor='let pizza of cartArr' class="row">
+            <div class="col-2 ">
+                <p class="pizza-count-p">{{pizza.pizzaCount}} </p>
+
+
+            </div>
+            <div class="col-10 sub-box">
+                <p class="pizza-title-p"> {{pizza.pizzaTitle}} </p>
+
+
+                <p class="pizza-size-p"><span>{{pizza.size}} </span><span> ${{pizza.pizzaPrice}}</span> </p>
+
+                <p *ngIf='pizza.toppingsArr[0]' class="pizza-size-p"><span>{{pizza.toppingsArr[0]}}</span><span>
+                        ${{pizza.toppingsPriceArr[0]}}</span></p>
+                <p *ngIf='pizza.toppingsArr[1]' class="pizza-size-p"><span>{{pizza.toppingsArr[1]}}</span><span>
+                        ${{pizza.toppingsPriceArr[1]}}</span></p>
+
+                <p class="pizza-total-p">total $ {{pizza.total}} </p>
+
+
+
+
+            </div>
+            <hr>
+
+
+        </div>
+
+
+        <div>
+            <i (click)="closePaymentModal()" class="closePayment far fa-times-circle"></i>
+        </div>
+
+        <button [ngStyle]='{backgroundColor: !userVerified?"#6c757d" :"darkgreen" }' [disabled]='!userVerified' class="totalPay">
+           <p> <i *ngIf='!userVerified'>please verify your account by clicking in the link on your mail</i></p>
+           <i> ${{ourTotalPay}}</i>
+        </button>
+
+
+    </div>
+    
+
+
+</div>
+<button class="cart_btn" (click)='openCart()'> Cart <span *ngIf='cartArr.length>0'> ({{cartArr.length}})</span></button>

@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 // const jwt = require('jsonwebtoken')
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { Observable } from 'rxjs';
+// import { Observable } from 'rxjs';
 import { PizzaService } from 'src/app/pizza.service';
 import { UserService } from 'src/app/user.service';
+// import { UserService } from 'src/app/user.service';
 @Component({
   selector: 'app-menu-page',
   templateUrl: './menu-page.component.html',
@@ -13,17 +14,17 @@ import { UserService } from 'src/app/user.service';
 export class MenuPageComponent implements OnInit {
 
 
-// sec1:any='pizza';
+  // sec1:any='pizza';
 
 
   // edrab fe 100 lma te3ml count fe el payment 34an yb2a b el cents//num.toFixed(2) ta5d awl rqmen b3d el 3lama
 
 
-  /***categories {deals, pizza, specialtyPizza, dailySpecials }***/
-
-  
+  /***categories {deals, pizza, specialtyPizza, dailySpecials , combos }***/
 
 
+
+  /** with one price***/
   dealsSec = [
     {
       id: "1",
@@ -72,6 +73,70 @@ export class MenuPageComponent implements OnInit {
     },
 
   ]
+
+  combos: any = [
+    {
+      title: "Gyro Plate",
+      over_view: "Gyro, Greek salad & flat pita.",
+      price: 10.78,
+      img_src: false
+    },
+    {
+      title: "Cheeseburger, Fries & Drink",
+      over_view: "--",
+      price: 10.78,
+      img_src: false
+    },
+    {
+      title: "Three Pieces Chicken Tenders, Fries & Drink",
+      over_view: "With ranch, BBQ sauce, honey mustard sauce, and marinara.",
+      price: 9.58,
+      img_src: false
+    },
+    {
+
+      title: "Fried Fish, Fries & Drink",
+      over_view: "--",
+      price: 11.98,
+      img_src: false
+    },
+    {
+
+      title: "Chicken Nuggets, Fries & Drink",
+      over_view: "--",
+      price: 8.38,
+      img_src: false
+    },
+
+  ]
+  // specials: any = [
+  //   {
+  //     id: "1",
+  //     title: "Large One Topping Pizza with 10 wings & 2 Liter Drink Special",
+  //     // over_view:"Pepperoni, sausage, mushrooms, onions, green peppers.",
+  //     price: 27.58
+  //   }
+  // ]
+  // dailySpecials: any = [
+  //   {
+  //     id: "1",
+  //     title: "14'' Three Topping Pizza Special",
+  //     over_view: "Served every day from 2:00 pm. - 6:00 pm.",
+  //     price: 15.98,
+  //     isImaged: false
+  //   },
+  //   {
+  //     id: "2",
+  //     title: "14'' One Topping & Two Liter Soda Special",
+  //     // over_view:"Pepperoni, sausage, mushrooms, onions, green peppers.",
+  //     price: 13.17
+  //   }
+  // ]
+
+
+
+
+  /** with three price***/
 
   pizza = [
     {
@@ -152,30 +217,20 @@ export class MenuPageComponent implements OnInit {
 
 
   ]
-  specials: any = [
-    {
-      id: "1",
-      title: "Large One Topping Pizza with 10 wings & 2 Liter Drink Special",
-      // over_view:"Pepperoni, sausage, mushrooms, onions, green peppers.",
-      price: 27.58
-    }
-  ]
-  dailySpecials: any = [
-    {
-      id: "1",
-      title: "14'' Three Topping Pizza Special",
-      over_view: "Served every day from 2:00 pm. - 6:00 pm.",
-      price: 15.98,
-      isImaged: false
-    },
-    {
-      id: "2",
-      title: "14'' One Topping & Two Liter Soda Special",
-      // over_view:"Pepperoni, sausage, mushrooms, onions, green peppers.",
-      price: 13.17
-    }
-  ]
 
+  additions: any = [
+    {
+
+      id: "1",
+      title: "Pepsi",
+      over_view: `Cola Machine`,
+      smallPrice: 3,
+      mediumPrice: 4.5,
+      largePrice: 6,
+      img_src: "../../../assets/pizza-icons/cheese pizza.jpg"
+
+    }
+  ]
 
   /***categorise ==> delivery & pickup***/
 
@@ -244,8 +299,10 @@ export class MenuPageComponent implements OnInit {
 
   modalImgSrc = ""
   modalWithImg = true
+
+  /** our default modal (pizza , specialtyPizza) **/
   openModal(clickedPizza: any) {
-    console.log(this.toppingsArr);
+    // console.log(this.toppingsArr);
 
     // "cheked poroperty" worked in html form elements 
     (document.getElementById("smallSizeButton") as HTMLFormElement).checked = true;
@@ -259,6 +316,11 @@ export class MenuPageComponent implements OnInit {
     const modal = (document.getElementById("myModal") as HTMLElement).style.display = "block";
     const price = (document.getElementById("itemPrice") as HTMLElement).innerHTML = "$" + this.pizzaPrice;
     const title = (document.getElementById("itemTitle") as HTMLElement).innerHTML = clickedPizza.title;
+
+
+    const option_h4 = (document.getElementById("chooseAnOption-h4") as HTMLElement).style.display = "block";
+    const options = (document.getElementById("chooseAnOption-divCon") as HTMLElement).style.display = "block";
+
 
     this.pizzaTitle = clickedPizza.title
 
@@ -276,7 +338,140 @@ export class MenuPageComponent implements OnInit {
 
     }
 
-    console.log(clickedPizza.smallPrice)
+    // console.log(clickedPizza.smallPrice)
+
+  }
+
+  /** our modal 1 with one price  there is no size here & there is no title just over_view (deals)**/
+  openModal1(clickedPizza: any) {
+    // console.log(this.toppingsArr);
+
+    // "cheked poroperty" worked in html form elements 
+    // (document.getElementById("smallSizeButton") as HTMLFormElement).checked = true;
+
+    this.pizzaPrice = clickedPizza.price;   // by default
+    // this.smallSizePrice = clickedPizza.smallPrice;
+    // this.largeSizePrice = clickedPizza.largePrice;
+    // this.mediumSizePrice = clickedPizza.mediumPrice;
+
+
+    const modal = (document.getElementById("myModal") as HTMLElement).style.display = "block";
+    const price = (document.getElementById("itemPrice") as HTMLElement).innerHTML = "$" + this.pizzaPrice;
+    const title = (document.getElementById("itemTitle") as HTMLElement).innerHTML = clickedPizza.over_view;
+
+    const option_h4 = (document.getElementById("chooseAnOption-h4") as HTMLElement).style.display = "none";
+    const options = (document.getElementById("chooseAnOption-divCon") as HTMLElement).style.display = "none";
+
+
+    this.pizzaTitle = clickedPizza.over_view
+
+    // this.pizzaSize = 'small'
+    // this.orederInSmallSize();
+
+    // check if this item has image or no
+    if (clickedPizza.img_src) {
+      this.modalImgSrc = clickedPizza.img_src;
+      this.modalWithImg = true
+    }
+    else {
+      this.modalWithImg = false
+
+
+    }
+
+    // console.log(clickedPizza.price)
+
+  }
+
+  /** our modal 2 with one price  there is no size here  (combos) **/
+  openModal2(clickedPizza: any) {
+    // console.log(this.toppingsArr);
+
+    // "cheked poroperty" worked in html form elements 
+    // (document.getElementById("smallSizeButton") as HTMLFormElement).checked = true;
+
+    console.log(clickedPizza);
+    
+    this.pizzaPrice = clickedPizza.price;   // by default
+    // this.smallSizePrice = clickedPizza.smallPrice;
+    // this.largeSizePrice = clickedPizza.largePrice;
+    // this.mediumSizePrice = clickedPizza.mediumPrice;
+
+
+    const modal = (document.getElementById("myModal") as HTMLElement).style.display = "block";
+    const price = (document.getElementById("itemPrice") as HTMLElement).innerHTML = "$" + this.pizzaPrice;
+    const title = (document.getElementById("itemTitle") as HTMLElement).innerHTML = clickedPizza.title;
+
+    const option_h4 = (document.getElementById("chooseAnOption-h4") as HTMLElement).style.display = "none";
+    const options = (document.getElementById("chooseAnOption-divCon") as HTMLElement).style.display = "none";
+
+
+    this.pizzaTitle = clickedPizza.title
+
+    // this.pizzaSize = 'small'
+    // this.orederInSmallSize();
+    this.myTotal = Number(clickedPizza.price);
+    
+
+    // check if this item has image or no
+    if (clickedPizza.img_src) {
+      this.modalImgSrc = clickedPizza.img_src;
+      this.modalWithImg = true
+    }
+    else {
+      this.modalWithImg = false
+
+
+    }
+
+    // console.log(clickedPizza.price)
+
+  }
+
+
+  /** our modal 3 without toppings (additions) **/
+  openModal3(clicked: any) {
+    // console.log(this.toppingsArr);
+
+    // "cheked poroperty" worked in html form elements 
+    (document.getElementById("smallSizeButton") as HTMLFormElement).checked = true;
+
+    this.pizzaPrice = clicked.smallPrice;   // by default
+    this.smallSizePrice = clicked.smallPrice;
+    this.largeSizePrice = clicked.largePrice;
+    this.mediumSizePrice = clicked.mediumPrice;
+
+
+    const modal = (document.getElementById("myModal") as HTMLElement).style.display = "block";
+    const price = (document.getElementById("itemPrice") as HTMLElement).innerHTML = "$" + this.pizzaPrice;
+    const title = (document.getElementById("itemTitle") as HTMLElement).innerHTML = clicked.title;
+
+
+    const option_h4 = (document.getElementById("chooseAnOption-h4") as HTMLElement).style.display = "block";
+    const options = (document.getElementById("chooseAnOption-divCon") as HTMLElement).style.display = "block";
+
+    const toppings = (document.getElementById('add-toppings') as HTMLElement).style.display = 'none';
+    const toppings_header = (document.getElementById('toppings-header') as HTMLElement).style.display = 'none';
+
+
+    this.pizzaTitle = clicked.title
+
+    // this.pizzaSize = 'small'
+    this.orederInSmallSize();
+    // this.myTotal = clicked.price;
+
+    // check if this item has image or no
+    if (clicked.img_src) {
+      this.modalImgSrc = clicked.img_src;
+      this.modalWithImg = true
+    }
+    else {
+      this.modalWithImg = false
+
+
+    }
+
+    // console.log(clicked.smallPrice)
 
   }
 
@@ -299,10 +494,10 @@ export class MenuPageComponent implements OnInit {
   /*********increase && decrease functions */
   increasePizza() {
     this.pizzaCounter++;
-    console.log(this.pizzaCounter);
-    console.log(this.pizzaPrice);
-    this.myTotal = this.pizzaPrice * this.pizzaCounter
-    console.log(this.myTotal);
+    // console.log(this.pizzaCounter);
+    // console.log(this.pizzaPrice);
+    this.myTotal = this.pizzaPrice * this.pizzaCounter;
+    // console.log(this.myTotal);
 
     (document.getElementById("itemPrice") as HTMLElement).innerHTML = "$" + this.myTotal.toFixed('2');
 
@@ -316,10 +511,10 @@ export class MenuPageComponent implements OnInit {
       this.pizzaCounter--;
 
 
-      console.log(this.pizzaCounter);
-      console.log(this.pizzaPrice);
-      this.myTotal = this.pizzaPrice * this.pizzaCounter
-      console.log(this.myTotal);
+      // console.log(this.pizzaCounter);
+      // console.log(this.pizzaPrice);
+      this.myTotal = this.pizzaPrice * this.pizzaCounter;
+      // console.log(this.myTotal);
       (document.getElementById("itemPrice") as HTMLElement).innerHTML = "$" + this.myTotal.toFixed('2');
 
 
@@ -395,15 +590,15 @@ export class MenuPageComponent implements OnInit {
     if ((document.getElementById("extra-cheese") as HTMLFormElement).checked) {
 
       if (this.toppingsArr.length > 1) {
-        console.log("hhhhhhhhhhhhhey you can't   cheeck");
+        // console.log("hhhhhhhhhhhhhey you can't   cheeck");
         (document.getElementById("extra-cheese") as HTMLFormElement).checked = false
 
       }
       else {
         this.toppingsPriceArr.push(this.extraChessePrice) // push for the price
         this.toppingsArr.push('+Extra cheese')    // push for the name of toppings
-        console.log(this.toppingsArr);
-        console.log(this.toppingsPriceArr);
+        // console.log(this.toppingsArr);
+        // console.log(this.toppingsPriceArr);
       }
 
 
@@ -412,22 +607,17 @@ export class MenuPageComponent implements OnInit {
         if ('+Extra cheese' == this.toppingsArr[i]) {
           this.toppingsArr.splice(i, 1)
         }
-        console.log("in for loop toppings arr ==>" + this.toppingsArr);
+        // console.log("in for loop toppings arr ==>" + this.toppingsArr);
 
       }
       for (let i = 0; i < this.toppingsPriceArr.length; i++) {
         if (this.extraChessePrice == this.toppingsPriceArr[i]) {
           this.toppingsPriceArr.splice(i, 1)
         }
-        console.log("in for loop toppings price arr ==>" + this.toppingsPriceArr);
+        // console.log("in for loop toppings price arr ==>" + this.toppingsPriceArr);
       }
 
     }
-
-
-
-
-
 
   }
   addSauce() {
@@ -438,7 +628,7 @@ export class MenuPageComponent implements OnInit {
         // (document.getElementById("extra-sauce") as HTMLFormElement).disabled
         // (document.getElementById("extra-onion") as HTMLFormElement).disabled
         // (document.getElementById("extra-tomato") as HTMLFormElement).disabled
-        console.log("hhhhhhhhhhhhhey you can't   cheeck");
+        // console.log("hhhhhhhhhhhhhey you can't   cheeck");
         (document.getElementById("extra-sauce") as HTMLFormElement).checked = false
 
       }
@@ -446,8 +636,8 @@ export class MenuPageComponent implements OnInit {
       else {
         this.toppingsPriceArr.push(this.extraSaucePrice)
         this.toppingsArr.push('+Extra sauce')
-        console.log(this.toppingsArr);
-        console.log(this.toppingsPriceArr);
+        // console.log(this.toppingsArr);
+        // console.log(this.toppingsPriceArr);
       }
 
     }
@@ -458,32 +648,17 @@ export class MenuPageComponent implements OnInit {
         if ('+Extra sauce' == this.toppingsArr[i]) {
           this.toppingsArr.splice(i, 1)
         }
-        console.log("in for loop toppings arr ==>" + this.toppingsArr);
+        // console.log("in for loop toppings arr ==>" + this.toppingsArr);
 
       }
       for (let i = 0; i < this.toppingsPriceArr.length; i++) {
         if (this.extraSaucePrice == this.toppingsPriceArr[i]) {
           this.toppingsPriceArr.splice(i, 1)
         }
-        console.log("in for loop toppings price arr ==>" + this.toppingsPriceArr);
+        // console.log("in for loop toppings price arr ==>" + this.toppingsPriceArr);
       }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
   addOnion() {
 
@@ -498,14 +673,14 @@ export class MenuPageComponent implements OnInit {
         // (document.getElementById("extra-sauce") as HTMLFormElement).disabled
         // (document.getElementById("extra-onion") as HTMLFormElement).disabled
         // (document.getElementById("extra-tomato") as HTMLFormElement).disabled
-        console.log("hhhhhhhhhhhhhey you can't   cheeck");
+        // console.log("hhhhhhhhhhhhhey you can't   cheeck");
         (document.getElementById("extra-onion") as HTMLFormElement).checked = false
 
       } else {
         this.toppingsPriceArr.push(this.extraOnionPrice)
         this.toppingsArr.push('+Extra onion')
-        console.log(this.toppingsArr);
-        console.log(this.toppingsPriceArr);
+        // console.log(this.toppingsArr);
+        // console.log(this.toppingsPriceArr);
       }
 
     }
@@ -518,14 +693,14 @@ export class MenuPageComponent implements OnInit {
         if ('+Extra onion' == this.toppingsArr[i]) {
           this.toppingsArr.splice(i, 1)
         }
-        console.log("in for loop toppings arr ==>" + this.toppingsArr);
+        // console.log("in for loop toppings arr ==>" + this.toppingsArr);
 
       }
       for (let i = 0; i < this.toppingsPriceArr.length; i++) {
         if (this.extraOnionPrice == this.toppingsPriceArr[i]) {
           this.toppingsPriceArr.splice(i, 1)
         }
-        console.log("in for loop toppings price arr ==>" + this.toppingsPriceArr);
+        // console.log("in for loop toppings price arr ==>" + this.toppingsPriceArr);
       }
 
     }
@@ -539,7 +714,7 @@ export class MenuPageComponent implements OnInit {
 
   }
   addTomato() {
-    console.log(this.toppingsArr);
+    // console.log(this.toppingsArr);
 
     if ((document.getElementById("extra-tomato") as HTMLFormElement).checked) {
 
@@ -549,15 +724,15 @@ export class MenuPageComponent implements OnInit {
         // (document.getElementById("extra-sauce") as HTMLFormElement).disabled
         // (document.getElementById("extra-onion") as HTMLFormElement).disabled
         // (document.getElementById("extra-tomato") as HTMLFormElement).disabled
-        console.log("hhhhhhhhhhhhhey you can't   cheeck");
+        // console.log("hhhhhhhhhhhhhey you can't   cheeck");
         (document.getElementById("extra-tomato") as HTMLFormElement).checked = false
 
       } else {
 
         this.toppingsPriceArr.push(this.extraTomatoPrice)
         this.toppingsArr.push('+Extra tomato')
-        console.log(this.toppingsArr);
-        console.log(this.toppingsPriceArr);
+        // console.log(this.toppingsArr);
+        // console.log(this.toppingsPriceArr);
 
       }
     }
@@ -569,14 +744,14 @@ export class MenuPageComponent implements OnInit {
         if ('+Extra tomato' == this.toppingsArr[i]) {
           this.toppingsArr.splice(i, 1)
         }
-        console.log("in for loop toppings arr ==>" + this.toppingsArr);
+        // console.log("in for loop toppings arr ==>" + this.toppingsArr);
 
       }
       for (let i = 0; i < this.toppingsPriceArr.length; i++) {
         if (this.extraTomatoPrice == this.toppingsPriceArr[i]) {
           this.toppingsPriceArr.splice(i, 1)
         }
-        console.log("in for loop toppings price arr ==>" + this.toppingsPriceArr);
+        // console.log("in for loop toppings price arr ==>" + this.toppingsPriceArr);
       }
 
     }
@@ -597,227 +772,314 @@ export class MenuPageComponent implements OnInit {
 
 
   cartArr: any[] = []
-
+  // allCost: any = [0]
+  checkBtnIsAvailable: boolean = false;
   addToCart() {
     this.toppingsPriceArr[0] = this.totalSauce1();
     this.toppingsPriceArr[1] = this.totalSauce2();
+    console.log("this is the un defiend > " + this.myTotal);
+
     let obj = {
       pizzaTitle: this.pizzaTitle,
       pizzaCount: this.pizzaCounter,
       size: this.pizzaSize,
-      pizzaPrice: this.myTotal.toFixed(2),
+      pizzaPrice: (this.myTotal).toFixed(2),
       total: (this.myTotal + this.toppingsPriceArr[0] + this.toppingsPriceArr[1]).toFixed(2),
       toppingsArr: this.toppingsArr,
       toppingsPriceArr: this.toppingsPriceArr,
     }
     this.cartArr.push(obj)
-    // this.allCost+= obj.total;
+    this.allPay.push(Number(obj.total));
+
+
+
     this.closeModal()
+    if (this.cartArr.length >= 1) {
+      this.checkBtnIsAvailable = true
+    } else {
+      this.checkBtnIsAvailable = false
+    }
+
   }
+
   deleteItemFromCart(pizza: any) {
-    // this.allCost = this.allCost-pizza.total;
-    console.log(this.cartArr);
+    // console.log(this.cartArr);
     for (let i = 0; i < this.cartArr.length; i++) {
       if (this.cartArr[i] == pizza) {
 
         this.cartArr.splice(i, 1)
+        this.allPay.splice(i, 1)
       }
+    }
+    if (this.cartArr.length >= 1) {
+      this.checkBtnIsAvailable = true
+    } else {
+      this.checkBtnIsAvailable = false
+
     }
 
     return this.cartArr
 
 
-    // this.cartArr = this.cartArr.filter((x)=>{
-    //   // console.log(this.cartArr[x]!=pizza);
-    //   if(this.cartArr[x]==pizza){
-    //    this.cartArr =this.cartArr[x].pop()
-
-    //   }
-    //   console.log(this.cartArr);
-
-
-    //   // return ;
-    // })
   }
 
-  isUser: boolean = true;
-  isAdmin: boolean = true;
+  isUser: boolean = false;
+  isAdmin: boolean = false;
   isLogin: boolean = false;
-  constructor(private _PizzaService:PizzaService) {
-    this._PizzaService.getPizzaSec().subscribe((results)=>{
-      console.log(results);
+  userVerified: boolean = false;
+  disableBtn() {
+    // if is login and the cart is not empty then don't disable the button
+    if (this.checkBtnIsAvailable && this.isLogin) {
+      return false
+    }
+    else {
+      return true
+    }
+  }
+
+
+  openCart(){
+    (document.getElementById('cart-con') as HTMLElement).style.display = 'block';
+    (document.getElementById('close-cart-icon') as HTMLElement).style.display = 'block';
+  }
+  closeCart(){
+    (document.getElementById('cart-con') as HTMLElement).style.display = 'none';
+    (document.getElementById('close-cart-icon') as HTMLElement).style.display = 'none';
+    
+  }
+  constructor(private _PizzaService: PizzaService, private _UserService: UserService) {
+    this._PizzaService.getPizzaSec().subscribe((results) => {
+      // console.log(results);
       this.pizza = results.pizzaSec
-      
-    },(err)=>{console.log(err);
+
+    }, (err) => {
+      console.log(err);
+    })
+
+    this._PizzaService.getSpecialitySec().subscribe((results) => {
+      // console.log(results);
+      this.specialtyPizza = results.specialitySec
+
+    }, (err) => {
+      console.log(err);
+    })
+
+    this._PizzaService.getCombosSec().subscribe((results) => {
+      console.log(results);
+      this.combos = results.combosSec
+
+    }, (err) => {
+      console.log(err);
+    })
+
+    this._PizzaService.getDealsSec().subscribe((results) => {
+      // console.log(results);
+      this.dealsSec = results.dealsSec
+      // console.log(results.dealsSec);
+      this.dealsNum = this.dealsSec.length
+
+
+    }, (err) => {
+      console.log(err);
+    })
+
+
+    this._PizzaService.getAdditionsSec().subscribe((results) => {
+      // console.log(results);
+      this.additions = results.additionsSec
+      // console.log(results.additionsSec);
+
+
+
+    }, (err) => {
+      console.log(err);
     })
 
   }
 
-  
-  
-  ngOnInit(): void {
- setTimeout(()=>{
-  let token = localStorage.getItem('userLoginToken')
-  // check if there is a token or no
-  if (token) {
-    console.log(token);
+  ourTotalPay: any = 0;
+  allPay: any = [];
+  checkout() {
+    // alert('hi')
+    this.ourTotalPay = 0;
+    // console.log(this.cartArr);
+    (document.getElementById('paymentModal') as HTMLElement).style.display = 'block';
+    this.allPay.forEach((element: number) => {
+      this.ourTotalPay = this.ourTotalPay + element
 
-    // decoded this token
-    const helper = new JwtHelperService();
-
-    const decoded = helper.decodeToken(token);
-    const expirationDate = helper.getTokenExpirationDate(token);
-    const isExpired = helper.isTokenExpired(token);
-
-    if (isExpired==false) {
-      console.log(decoded);
-      console.log('isExpired ' + isExpired);
-      console.log('expirationDate ' + expirationDate);
-      this.isLogin =true
+    });
+    this.ourTotalPay = this.ourTotalPay.toFixed(2)
 
 
-      if (decoded.isVerified) {
-        //  this.isUser = 
-        if (decoded.role == 'user') {
-          this.isUser = true;
-          this.isAdmin = false
+  }
+  closePaymentModal() {
+    (document.getElementById('paymentModal') as HTMLElement).style.display = 'none'
 
-        }
-        else if (decoded.role == 'admin') {
-          this.isAdmin = true;
-          this.isUser = false;
-
-        }
-
-      }else{
-        // this email is not verified
-        this.isLogin = false
-
-      }
-
-    }
-    else {
-      // no thing to decode please relogin
-      this.isLogin = false;
-      console.log('is login'+this.isLogin);
-      
-
-    }
-  }else{
-    // no token here re login
-    this.isLogin = false;
-      console.log('is login'+this.isLogin);
   }
 
- },60000)
+
+  logOut() {
+    localStorage.removeItem('userLoginToken');
+    this.isUser = false;
+    this.isAdmin = false;
+    this.isLogin = false;
+    this.userVerified = false;
+    console.log('log out success');
+
+    this._UserService.isUser = false;
+    this._UserService.isAdmin = false;
+    this._UserService.isLogin = false;
+
+
+  }
+  ngOnInit(): void {
+    setTimeout(() => {
+      let token = localStorage.getItem('userLoginToken')
+      // check if there is a token or no
+      if (token) {
+        // console.log(token);
+
+        // decoded this token
+        const helper = new JwtHelperService();
+
+        const decoded = helper.decodeToken(token);
+        const expirationDate = helper.getTokenExpirationDate(token);
+        const isExpired = helper.isTokenExpired(token);
+
+        if (isExpired == false) {
+          // console.log(decoded);
+          // console.log('isExpired ' + isExpired);
+          // console.log('expirationDate ' + expirationDate);
+          this.isLogin = true;
+          this._UserService.isLogin = true;
+          // console.log('is login (if ex) ' + this.isLogin);
+
+          //  this.isUser = 
+          if (decoded.role == 'user') {
+            this.isUser = true;
+            this.isAdmin = false
+            this._UserService.isUser = true;
+            this._UserService.isAdmin = false;
+
+            if (decoded.isVerified) {
+              // if this user verified then he can continue the process to order
+              this.userVerified = true
+
+            } else {
+              // else => the total btn will be disabled
+              this.userVerified = false
+            }
+
+          }
+          else if (decoded.role == 'admin') {
+            this.isAdmin = true;
+            this.isUser = false;
+            this._UserService.isUser = false;
+            this._UserService.isAdmin = true;
+
+          }
+
+
+
+        }
+        else {
+          // token is expired
+          // no thing to decode please relogin
+          alert('please re-login')
+          this.isLogin = false;
+          // console.log('is login' + this.isLogin);
+          this.isAdmin = false;
+          this.isUser = false
+          this._UserService.isUser = false;
+          this._UserService.isAdmin = false;
+          this._UserService.isLogin = false;
+
+
+        }
+      } else {
+        // no token here re login
+        this.isLogin = false;
+        // console.log('is login' + this.isLogin);
+        this._UserService.isLogin = false;
+      }
+
+    }, 400)
+
+
+    setInterval(() => {
+      let token = localStorage.getItem('userLoginToken')
+      // check if there is a token or no
+      if (token) {
+        // console.log(token);
+
+        // decoded this token
+        const helper = new JwtHelperService();
+
+        const decoded = helper.decodeToken(token);
+        const expirationDate = helper.getTokenExpirationDate(token);
+        const isExpired = helper.isTokenExpired(token);
+
+        if (isExpired === false) {
+          // console.log(decoded);
+          // console.log('isExpired ' + isExpired);
+          // console.log('expirationDate ' + expirationDate);
+          this.isLogin = true
+          this._UserService.isLogin = true;
+
+
+          if (decoded.role == 'user') {
+            this.isUser = true;
+            this.isAdmin = false;
+
+            this._UserService.isUser = true;
+            this._UserService.isAdmin = false;
+
+            if (decoded.isVerified) {
+              // if this user verified then he can continue the process to order
+              this.userVerified = true
+
+            } else {
+              // else => the total btn will be disabled
+              this.userVerified = false
+            }
+
+          }
+          else if (decoded.role == 'admin') {
+            this.isAdmin = true;
+            this.isUser = false;
+            this._UserService.isUser = false;
+            this._UserService.isAdmin = true;
+
+          }
+
+        }
+        else {
+          // token is expired
+          // no thing to decode please relogin
+          alert('please re-login')
+          this.isLogin = false;
+          // console.log('is login' + this.isLogin);
+          // console.log('is exp' + isExpired);
+          this.isAdmin = false;
+          this.isUser = false
+
+          this._UserService.isUser = false;
+          this._UserService.isAdmin = false;
+          this._UserService.isLogin = false;
+
+
+        }
+      } else {
+        // no token here re login
+        this.isLogin = false;
+        // console.log('is login' + this.isLogin);
+        this._UserService.isLogin = false;
+      }
+
+    }, 3*60000)
+
   }
 }
 
 
 // angular matirials
-
-
-
-
-
-
-
-/*
-addTomato() {
-  console.log(this.toppingsArr);
-
-
-  if (this.toppingsArr.length > 1) {
-    // (document.getElementById("extra-cheese") as HTMLFormElement).disabled
-    // (document.getElementById("extra-sauce") as HTMLFormElement).disabled
-    // (document.getElementById("extra-onion") as HTMLFormElement).disabled
-    // (document.getElementById("extra-tomato") as HTMLFormElement).disabled
-    console.log("hhhhhhhhhhhhhey you can't   cheeck");
-    (document.getElementById("extra-tomato") as HTMLFormElement).checked = false
-
-
-  } else {
-
-    if ((document.getElementById("extra-tomato") as HTMLFormElement).checked) {
-      this.toppingsPriceArr.push(this.extraTomatoPrice)
-      this.toppingsArr.push('+Extra tomato')
-      console.log(this.toppingsArr);
-      console.log(this.toppingsPriceArr);
-
-    } else {
-      for (let i = 0; i < this.toppingsArr.length; i++) {
-        if ('+Extra tomato' == this.toppingsArr[i]) {
-          this.toppingsArr.splice(i, 1)
-        }
-        console.log("in for loop toppings arr ==>" + this.toppingsArr);
-
-      }
-      for (let i = 0; i < this.toppingsPriceArr.length; i++) {
-        if (this.extraTomatoPrice == this.toppingsPriceArr[i]) {
-          this.toppingsPriceArr.splice(i, 1)
-        }
-        console.log("in for loop toppings price arr ==>" + this.toppingsPriceArr);
-      }
-
-    }
-
-  }
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- *
- *
- * test =(document.getElementsByClassName('item') as HTMLCollection )
-
-    test2 = (document.getElementsByClassName('hassan') ) as HTMLCollection;
-console.log(this.test)
-console.log(this.test2)
-// alert(this.test2)
-
-for(let i =0 ;i<this.test.length ;i++){
-  this.test[i].addEventListener('click',this.openModal)
-  // console.log(this.test[i].childNodes[1].childNodes[0]);
-  // this.allItems.push(this.test[i])
-// console.log(this.test[i].childNodes[0])
-// console.log(this.test[i])
-
-
-
-
-
-
-
-
-// alert("hi")
-// for (const item of this.test2) {
-
-// }
-
-// .classList.value
-// console.log(this.itemPrice)
-// console.log("the date ="+this.x.getDate())
-// console.log("the day ="+this.x.getMonth())
-
-
-// console.log(this.toArray())
-}
- */

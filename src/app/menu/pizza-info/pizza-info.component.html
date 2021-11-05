@@ -1,12 +1,31 @@
-<p>pizza-info works!</p>
+<!-- <p>pizza-info works!</p> -->
+<button routerLink='/dashBoard' class="btn btn-secondary m-3">Dash Board</button>
+
+
+<div class="container">
+    <h3>hint :</h3> <span>if you want to add in deals or commbos there is one price will be taken from you
+        ( the small price ) but please put 00 in the input as a place holder to be a valid
+    </span>
+    <p>the deals section is without any title but please put no-title in the input as a place holder to be a valid </p>
+    <p> </p>
+</div>
+<hr>
 
 
 <div class="container-fluid">
-  
+
 
     <div class="container">
 
-        <form (ngSubmit)="sendPizzaData()" [formGroup]="pizzaData" class="form row m-auto">
+
+        <!-- <ul>
+            <li><input type="radio" name="addToSec" >add to pizza sec</li>
+            <li><input type="radio" name="addToSec">add to speciality sec</li>
+            <li><input type="radio" name="addToSec">add to combos sec</li>
+            <li><input type="radio" name="addToSec">add to deals sec</li>
+        </ul> -->
+
+        <form [formGroup]="pizzaData" class="form row m-auto">
             <div class="col-lg-12">
                 <label for="">title </label>
                 <input formControlName="title" class="form-control" type="text">
@@ -33,7 +52,7 @@
             <div class="col-lg-12">
                 <label for="">smallPrice</label>
                 <input formControlName="smallPrice" class="form-control" type="text">
-               
+
                 <div *ngIf='
                 pizzaData.controls.smallPrice.touched &&
                 pizzaData.controls.smallPrice.invalid
@@ -44,7 +63,7 @@
             <div class="col-lg-12">
                 <label for="">medium price</label>
                 <input formControlName="mediumPrice" class="form-control" type="text">
-               
+
                 <div *ngIf='
                 pizzaData.controls.mediumPrice.touched &&
                 pizzaData.controls.mediumPrice.invalid
@@ -55,7 +74,7 @@
             <div class="col-lg-12">
                 <label for="">large price</label>
                 <input formControlName="largePrice" class="form-control" type="text">
-               
+
                 <div *ngIf='
                 pizzaData.controls.largePrice.touched &&
                 pizzaData.controls.largePrice.invalid
@@ -64,33 +83,35 @@
                 </div>
             </div>
 
-         
-         
+
             <div class="col-lg-12">
                 <label for="">image </label>
-                <input formControlName="img_src" class="form-control" type="file">
-                <div *ngIf='
-                pizzaData.controls.img_src.touched &&
-                pizzaData.controls.img_src.invalid
-                ' class="alert alert-danger" role="alert">
-                    <i> invalid img_src !!</i>
-                </div>
-            </div> 
-            <!-- [disabled]='pizzaData.valid' -->
-            <button type="submit" class="btn btn-info my-5 col-6 m-auto"> Submit</button>
+                <input (input)='onUpload($event)' class="form-control" type="file">
+
+            </div>
             <div>
                 <i>{{message}}</i>
             </div>
-            <!-- <p>already have account ? <span id="loginLink" routerLink ='/login'>login now</span></p> -->
-           
+            <!-- [disabled]='pizzaData.valid' -->
+            <!-- <button type="submit" class="btn btn-info my-5 col-6 m-auto"> Submit</button>--->
+            <button id="addToPizzaSec" [disabled]='!pizzaData.valid' (click)="sendPizzaData($event)" type="submit"
+                class="btn btn-info my-5 col-6 m-auto">add to pizza sec </button>
+            <button id="addToSpecialitySec" [disabled]='!pizzaData.valid' (click)="sendPizzaData($event)" type="submit"
+                class="btn btn-success my-5 col-6 m-auto">add to speciality sec </button>
+            <button id="addToCombosSec" [disabled]='!pizzaData.valid' (click)="sendPizzaData($event)" type="submit"
+                class="btn btn-primary my-5 col-6 m-auto">add to combos sec </button>
+            <button id="addToDealsSec" [disabled]='!pizzaData.valid' (click)="sendPizzaData($event)" type="submit"
+                class="btn btn-warning my-5 col-6 m-auto">add to deals sec </button>
+            <button id="addToAdditionsSec" [disabled]='!pizzaData.valid' (click)="sendPizzaData($event)" type="submit"
+                class="btn btn-secondary my-5 col-6 m-auto">add to addtions sec </button>
+
+
 
         </form>
     </div>
-   
+
 
 
 
 
 </div>
-
-
