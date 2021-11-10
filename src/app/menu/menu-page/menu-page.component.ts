@@ -904,6 +904,12 @@ export class MenuPageComponent implements OnInit {
     this.ourTotalPay = 0;
     // console.log(this.cartArr);
     (document.getElementById('paymentModal') as HTMLElement).style.display = 'block';
+    console.log(window.innerWidth);
+    
+    if(window.innerWidth <= 991){
+      (document.getElementById('cart-con') as HTMLElement).style.display = 'none';
+
+    }
     this.allPay.forEach((element: number) => {
       this.ourTotalPay = this.ourTotalPay + element
 

@@ -13,7 +13,7 @@ import { UserInfoComponent } from './menu/user-info/user-info.component';
 // import {MenuModule} from './menu/menu.module'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PathGuard } from './path.guard';
-import { UpdateProductComponent } from './update-product/update-product.component';
+import { UpdateProductComponent } from './menu/update-product/update-product.component';
 // import { MenuModule } from './menu/menu.module';
 // import { ModalBoxComponent } from './menu/modal-box/modal-box.component';
 

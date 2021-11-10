@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PizzaService } from '../pizza.service';
+import { PizzaService } from '../../pizza.service';
 
 @Component({
   selector: 'app-update-product',
