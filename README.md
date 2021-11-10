@@ -10,11 +10,11 @@ If you want to login as an admin take this :
 ##### -If you are not logged in, you will be able to add to the cart but you cannot check the order
 ##### -If you want to order in the right way, please log in with an email and don't forget to verify the email by clicking on the link I will send to you on the email
 When you go to the dashboard page you will find 5 buttons to be able to access the project (add product, update product, delete a product, user info, block user)
-####In Add product: you can add a product to any section by clicking on that button which adds to the section
-####In delete product: you can delete any product in the project by ID
-####In update product: you can update a product by choose his ID from tables IDs and put your changes and clicking on submit button 
-####In block user: you can block any user by adding his (email or phone) 
-####In get user information: you can get any user information by adding his (email or phone)
+#### In Add product: you can add a product to any section by clicking on that button which adds to the section
+#### In delete product: you can delete any product in the project by ID
+#### In update product: you can update a product by choose his ID from tables IDs and put your changes and clicking on submit button 
+#### In block user: you can block any user by adding his (email or phone) 
+#### In get user information: you can get any user information by adding his (email or phone)
 
 
 
