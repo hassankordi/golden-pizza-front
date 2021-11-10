@@ -1,0 +1,25 @@
+*{
+    overflow-x: none !important;
+}
+.info-font {
+    font-weight: 600;
+    margin: 15px 0px;
+}
+
+.italick-message {
+    margin: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.tables{
+    font-size: 20px;
+}
+@media all and (max-width: 991px) and (min-width: 50px) {
+*{
+    overflow-x: none !important;
+    font-size: 12px;
+}
+.tables{
+font-size: 13px;
+}
+}

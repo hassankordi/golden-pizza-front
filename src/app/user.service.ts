@@ -18,23 +18,23 @@ export class UserService {
 
   login(data: any): Observable<any> {
     console.log(data);
-    return this._HttpClient.post('http://localhost:2526/sign_in', data)
+    return this._HttpClient.post('https://golden-pizza-back.herokuapp.com/sign_in', data)
   }
   loginWithGoogle(token: any): Observable<any> {
-    return this._HttpClient.post(`http://localhost:2526/sign_in/google`, {
+    return this._HttpClient.post(`https://golden-pizza-back.herokuapp.com/sign_in/google`, {
       token
     })
   }
   regestration(data: any): Observable<any> {
     console.log(data);
 
-    return this._HttpClient.post('http://localhost:2526/sign_up', data)
+    return this._HttpClient.post('https://golden-pizza-back.herokuapp.com/sign_up', data)
   }
   getAllUsers(data: any): Observable<any> {
     console.log(data);
     let headers_object = new HttpHeaders().set("Authorization", "Bearer " + data);
 
-    return this._HttpClient.get(`http://localhost:2526/users`, {headers:headers_object})
+    return this._HttpClient.get(`https://golden-pizza-back.herokuapp.com/users`, {headers:headers_object})
   }
   getUserByEmail(email:any,token:any): Observable<any> {
     console.log(email);
@@ -44,7 +44,7 @@ export class UserService {
       email
     }
 
-    return this._HttpClient.post(`http://localhost:2526/users/byEmail`,body,{
+    return this._HttpClient.post(`https://golden-pizza-back.herokuapp.com/users/byEmail`,body,{
   
       headers:headers_object,
       observe:'body',
@@ -61,7 +61,7 @@ export class UserService {
       phone
     }
 
-    return this._HttpClient.post(`http://localhost:2526/users/byPhone`,body,{
+    return this._HttpClient.post(`https://golden-pizza-back.herokuapp.com/users/byPhone`,body,{
   
       headers:headers_object,
       observe:'body',
@@ -83,7 +83,7 @@ export class UserService {
       email
     }
 
-    return this._HttpClient.patch(`http://localhost:2526/users/blockByEmail`,body,{
+    return this._HttpClient.patch(`https://golden-pizza-back.herokuapp.com/users/blockByEmail`,body,{
   
       headers:headers_object,
       observe:'body',
@@ -100,7 +100,7 @@ export class UserService {
       phone
     }
 
-    return this._HttpClient.patch(`http://localhost:2526/users/blockByPhone`,body,{
+    return this._HttpClient.patch(`https://golden-pizza-back.herokuapp.com/users/blockByPhone`,body,{
   
       headers:headers_object,
       observe:'body',

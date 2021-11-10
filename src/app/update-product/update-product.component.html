@@ -1,0 +1,265 @@
+<!-- <p>update-product works!</p> -->
+<button routerLink='/dashBoard' class="btn btn-secondary m-3">Dash Board</button>
+
+
+<div class="container">
+    
+    <div class="tables">
+        <h4 class="m-4">Pizza Items</h4>
+        <div>
+            <!-- evry cat is a array -->
+   
+
+            <table class="table table-hover table-dark">
+               <thead>
+                 <tr>
+                   <th scope="col">#</th>
+                   <th scope="col">ID</th>
+                   <th scope="col">Title</th>
+                   <!-- <th scope="col">Handle</th> -->
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr *ngFor='let x of pizza; let i = index'>
+                   <th scope="row">{{i}}</th>
+                   <td>{{x._id}}</td>
+                   <td>{{x.title}}</td>
+                   <!-- <td>@mdo</td> -->
+                 </tr>
+                 
+               </tbody>
+             </table>
+
+        </div>
+
+        <h4>Deals Items</h4>
+        <div>
+           <!-- evry cat is a array -->
+  
+
+           <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Over_view</th>
+                  <!-- <th scope="col">Handle</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor='let x of deals; let i = index'>
+                  <th scope="row">{{i}}</th>
+                  <td>{{x._id}}</td>
+                  <td>{{x.title}}</td>
+                  <td>{{x.over_view}}</td>
+                  <!-- <td>@mdo</td> -->
+                </tr>
+                
+              </tbody>
+            </table>
+
+       </div>
+       <h4>Additions Items</h4>
+       <div>
+          <!-- evry cat is a array -->
+ 
+
+          <table class="table table-hover table-dark">
+             <thead>
+               <tr>
+                 <th scope="col">#</th>
+                 <th scope="col">ID</th>
+                 <th scope="col">Title</th>
+                 <!-- <th scope="col">Handle</th> -->
+               </tr>
+             </thead>
+             <tbody>
+               <tr *ngFor='let x of additions; let i = index'>
+                 <th scope="row">{{i}}</th>
+                 <td>{{x._id}}</td>
+                 <td>{{x.title}}</td>
+                 <!-- <td>@mdo</td> -->
+               </tr>
+               
+             </tbody>
+           </table>
+
+      </div>
+      <h4>Combos Items</h4>
+      <div>
+         <!-- evry cat is a array -->
+
+
+         <table class="table table-hover table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <!-- <th scope="col">Handle</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let x of combos; let i = index'>
+                <th scope="row">{{i}}</th>
+                <td>{{x._id}}</td>
+                <td>{{x.title}}</td>
+                <!-- <td>@mdo</td> -->
+              </tr>
+              
+            </tbody>
+          </table>
+
+     </div>
+     <h4>Speciality Items</h4>
+     <div>
+        <!-- evry cat is a array -->
+
+
+        <table class="table table-hover table-dark">
+           <thead>
+             <tr>
+               <th scope="col">#</th>
+               <th scope="col">ID</th>
+               <th scope="col">Title</th>
+               <!-- <th scope="col">Handle</th> -->
+             </tr>
+           </thead>
+           <tbody>
+             <tr *ngFor='let x of specialty; let i = index'>
+               <th scope="row">{{i}}</th>
+               <td>{{x._id}}</td>
+               <td>{{x.title}}</td>
+               <!-- <td>@mdo</td> -->
+             </tr>
+             
+           </tbody>
+         </table>
+
+    </div>
+
+        
+
+    </div>
+
+
+    <div>
+        <form [formGroup]="pizzaData" (ngSubmit)='updateById()' class="form row m-auto">
+            <div class="col-lg-12">
+                <label for="">title </label>
+                <input formControlName="title" class="form-control" type="text">
+                <div *ngIf='
+                pizzaData.controls.title.touched &&
+                pizzaData.controls.title.invalid
+                ' class="alert alert-danger" role="alert">
+                    <i> title invalid !!</i>
+                </div>
+            </div>
+            <div class="col-lg-12">
+
+                <label for="">over_view</label>
+                <input formControlName="over_view" class="form-control" type="text">
+                <div *ngIf='
+                pizzaData.controls.over_view.touched &&
+                pizzaData.controls.over_view.invalid
+                ' class="alert alert-danger" role="alert">
+                    <i> over_view invalid !!</i>
+                </div>
+
+            </div>
+            <!--------make option show smallPrice-->
+            <div class="col-lg-12">
+                <label for="">smallPrice</label>
+                <input formControlName="smallPrice" class="form-control" type="text">
+
+                <div *ngIf='
+                pizzaData.controls.smallPrice.touched &&
+                pizzaData.controls.smallPrice.invalid
+                ' class="alert alert-danger" role="alert">
+                    <i> invalid smallPrice !!</i>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <label for="">medium price</label>
+                <input formControlName="mediumPrice" class="form-control" type="text">
+
+                <div *ngIf='
+                pizzaData.controls.mediumPrice.touched &&
+                pizzaData.controls.mediumPrice.invalid
+                ' class="alert alert-danger" role="alert">
+                    <i> invalid mediumPrice !!</i>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <label for="">large price</label>
+                <input formControlName="largePrice" class="form-control" type="text">
+
+                <div *ngIf='
+                pizzaData.controls.largePrice.touched &&
+                pizzaData.controls.largePrice.invalid
+                ' class="alert alert-danger" role="alert">
+                    <i> invalid largePrice !!</i>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <label for="">ID</label>
+                <input formControlName="id" class="form-control" type="text">
+
+                <div *ngIf='
+                pizzaData.controls.id.touched &&
+                pizzaData.controls.id.invalid
+                ' class="alert alert-danger" role="alert">
+                    <i> invalid ID !!</i>
+                </div>
+            </div>
+
+
+            <div class="col-lg-12">
+                <label for="">image </label>
+                <input (input)='onUpload($event)' class="form-control" type="file">
+
+            </div>
+            <div>
+                <i>{{message}}</i>
+            </div>
+            <!-- [disabled]='pizzaData.valid' -->
+            <button type="submit" class="btn btn-info my-5 col-6 m-auto"> Submit</button>
+            
+
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!----------------
+
+
+
+
+
+
+<button id="addToPizzaSec" [disabled]='!pizzaData.valid' (click)="sendPizzaData($event)" type="submit"
+                class="btn btn-info my-5 col-6 m-auto">add to pizza sec </button>
+            <button id="addToSpecialitySec" [disabled]='!pizzaData.valid' (click)="sendPizzaData($event)" type="submit"
+                class="btn btn-success my-5 col-6 m-auto">add to speciality sec </button>
+            <button id="addToCombosSec" [disabled]='!pizzaData.valid' (click)="sendPizzaData($event)" type="submit"
+                class="btn btn-primary my-5 col-6 m-auto">add to combos sec </button>
+            <button id="addToDealsSec" [disabled]='!pizzaData.valid' (click)="sendPizzaData($event)" type="submit"
+                class="btn btn-warning my-5 col-6 m-auto">add to deals sec </button>
+            <button id="addToAdditionsSec" [disabled]='!pizzaData.valid' (click)="sendPizzaData($event)" type="submit"
+                class="btn btn-secondary my-5 col-6 m-auto">add to addtions sec </button>
+
+
+
+
+-->

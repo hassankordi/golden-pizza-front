@@ -19,7 +19,7 @@ export class DeleteProductComponent implements OnInit {
     })
 
 // after delete re assign the data
-    this._PizzaService.getAllCategories().subscribe((all)=>{
+    this._PizzaService.getAllCategories(this.token).subscribe((all)=>{
       console.log(all.allCategories);
       
       this.allCat = all.allCategories;
@@ -42,7 +42,7 @@ export class DeleteProductComponent implements OnInit {
   specialty:any;
   additions:any;
   constructor(private _PizzaService:PizzaService) { 
-    this._PizzaService.getAllCategories().subscribe((all)=>{
+    this._PizzaService.getAllCategories(this.token).subscribe((all)=>{
       console.log(all.allCategories);
       
       this.allCat = all.allCategories;

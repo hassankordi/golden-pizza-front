@@ -96,10 +96,10 @@ export class LoginComponent implements OnInit {
       if(this.message =='login success'){
         this._Router.navigate(['/menu'])
       }
-      // if(this.loggedIn){
-      //   this._Router.navigate(['/menu'])
+      if(this.loggedIn){
+        this._Router.navigate(['/menu'])
 
-      // }
+      }
 
 
     }, (err) => {

@@ -26,7 +26,7 @@ export class PizzaService {
       console.log(formData.get('img_src'))
 
     }
-    return this._HttpClient.post(`http://localhost:2526/addToPizzaSec`, formData, {
+    return this._HttpClient.post(`https://golden-pizza-back.herokuapp.com/addToPizzaSec`, formData, {
 
 
       headers: headers_object,
@@ -53,7 +53,7 @@ export class PizzaService {
     }
 
 
-    return this._HttpClient.post(`http://localhost:2526/addToSpecialitySec`, formData, {
+    return this._HttpClient.post(`https://golden-pizza-back.herokuapp.com/addToSpecialitySec`, formData, {
 
 
       headers: headers_object,
@@ -78,7 +78,7 @@ export class PizzaService {
 
     }
 
-    return this._HttpClient.post(`http://localhost:2526/addToCombosSec`, formData, {
+    return this._HttpClient.post(`https://golden-pizza-back.herokuapp.com/addToCombosSec`, formData, {
 
 
       headers: headers_object,
@@ -98,7 +98,7 @@ export class PizzaService {
     }
 
 
-    return this._HttpClient.post(`http://localhost:2526/addToDealsSec`, body, {
+    return this._HttpClient.post(`https://golden-pizza-back.herokuapp.com/addToDealsSec`, body, {
 
 
       headers: headers_object,
@@ -123,7 +123,7 @@ export class PizzaService {
       console.log(formData.get('img_src'))
 
     }
-    return this._HttpClient.post(`http://localhost:2526/addToAdditionsSec`, formData, {
+    return this._HttpClient.post(`https://golden-pizza-back.herokuapp.com/addToAdditionsSec`, formData, {
 
 
       headers: headers_object,
@@ -132,27 +132,32 @@ export class PizzaService {
 
   }
 
-  getAllCategories():Observable<any>{
-    return this._HttpClient.get('http://localhost:2526/allCategories')
+  getAllCategories(token:any):Observable<any>{
+    let headers_object = new HttpHeaders().set("Authorization", "Bearer " + token);
+  
+    return this._HttpClient.get('https://golden-pizza-back.herokuapp.com/allCategories',{
+
+      headers: headers_object,
+    })
   }
 
   getPizzaSec(): Observable<any> {
-    return this._HttpClient.get('http://localhost:2526/pizzaSec')
+    return this._HttpClient.get('https://golden-pizza-back.herokuapp.com/pizzaSec')
   }
 
 
   getSpecialitySec(): Observable<any> {
-    return this._HttpClient.get('http://localhost:2526/specialitySec')
+    return this._HttpClient.get('https://golden-pizza-back.herokuapp.com/specialitySec')
   }
 
   getCombosSec(): Observable<any> {
-    return this._HttpClient.get('http://localhost:2526/combosSec')
+    return this._HttpClient.get('https://golden-pizza-back.herokuapp.com/combosSec')
   }
   getDealsSec(): Observable<any> {
-    return this._HttpClient.get('http://localhost:2526/dealsSec')
+    return this._HttpClient.get('https://golden-pizza-back.herokuapp.com/dealsSec')
   }
   getAdditionsSec(): Observable<any> {
-    return this._HttpClient.get('http://localhost:2526/additionsSec')
+    return this._HttpClient.get('https://golden-pizza-back.herokuapp.com/additionsSec')
   }
 
 
@@ -163,7 +168,35 @@ export class PizzaService {
       id
     }
 
-    return this._HttpClient.post('http://localhost:2526/deleteProduct',body,{
+    return this._HttpClient.post('https://golden-pizza-back.herokuapp.com/deleteProduct',body,{
+
+
+      headers: headers_object,
+      // observe:'body',
+    })
+  }
+
+  updatePqroduct(pizzaData:any,selectedImage:any ,token:any): Observable<any> {
+    let headers_object = new HttpHeaders().set("Authorization", "Bearer " + token);
+    let formData = new FormData();
+    const image = selectedImage;
+    formData.append('title', pizzaData.title)
+    formData.append('over_view', pizzaData.over_view)
+    formData.append('smallPrice', pizzaData.smallPrice)
+    formData.append('mediumPrice', pizzaData.mediumPrice)
+    formData.append('largePrice', pizzaData.largePrice)
+    formData.append('id', pizzaData.id)
+
+    if (image !== null) {
+      formData.append('img_src', image)
+      console.log(formData.get('img_src'))
+
+    }
+    // https://golden-pizza-back.herokuapp.com/updateProduct
+    console.log(formData);
+    
+
+    return this._HttpClient.post('https://golden-pizza-back.herokuapp.com/updateProduct',formData,{
 
 
       headers: headers_object,

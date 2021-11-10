@@ -13,6 +13,7 @@ import { UserInfoComponent } from './menu/user-info/user-info.component';
 // import {MenuModule} from './menu/menu.module'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PathGuard } from './path.guard';
+import { UpdateProductComponent } from './update-product/update-product.component';
 // import { MenuModule } from './menu/menu.module';
 // import { ModalBoxComponent } from './menu/modal-box/modal-box.component';
 
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path:'pizza-info',component:PizzaInfoComponent ,canActivate:[PathGuard]},
   {path:'blockUser',component:BlockUserComponent ,canActivate:[PathGuard]},
   {path:'deleteProduct',component:DeleteProductComponent ,canActivate:[PathGuard]},
+  {path:'updateProduct',component:UpdateProductComponent ,canActivate:[PathGuard]},
   /* end */
 
 
@@ -44,7 +46,7 @@ const routes: Routes = [
 
 @NgModule({
   // declarations:[MenuModule],
-  imports: [RouterModule.forRoot(routes)], //////////////222222222222
+  imports: [RouterModule.forRoot(routes ,{useHash:true})], //////////////222222222222
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -21,6 +21,7 @@ import {
   GoogleLoginProvider
   
 } from 'angularx-social-login';
+import { UpdateProductComponent } from './update-product/update-product.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {
     AppComponent,
     MainPageComponent,
     PageNotFoundComponent,
+    UpdateProductComponent,
    
   ],
 
